@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flight Refund RAG · Ghouse Mohiuddin Mohammed</title>
+<meta name="description" content="A local retrieval-augmented generation system that answers flight-cancellation refund questions grounded in airline and government policy, with citations. LangChain, PostgreSQL + pgvector, local embeddings, and four progressively better retrievers." />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Flight Refund RAG" />
+<meta property="og:description" content="A citation-grounded RAG system over airline and government refund policy: LangChain, pgvector, a local LLM, and four retrievers (naive to hybrid to reranked to metadata self-query)." />
+<meta property="og:image" content="../assets/img/Ghouse.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/style.css?v=7" />
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html"><span class="dot"></span>ghouse.dev</a>
+    <div class="nav-links">
+      <a href="../index.html#work"><span class="idx">←</span>All work</a>
+      <a href="../index.html#contact"><span class="idx">05</span>Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <a class="cs-back" href="../index.html#work">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to all work
+  </a>
+
+  <!-- HERO -->
+  <header class="cs-hero">
+    <div class="cs-eyebrow">
+      <span>Personal project</span>
+      <span class="sep">·</span>
+      <span>RAG / LLM</span>
+      <span class="sep">·</span>
+      <span>Python · LangChain · pgvector · Ollama</span>
+    </div>
+    <h1 class="cs-title">A RAG system that<br/><span style="color:var(--signal)">cites its sources</span>.</h1>
+    <p class="cs-sub">A retrieval-augmented generation system that answers flight-cancellation refund questions grounded in real airline and government policy. Every answer carries <b>citations</b> to the source document, and the whole thing runs <b>locally with no API keys</b>.</p>
+
+    <div class="status cs-metrics reveal">
+      <div class="cell"><div class="k">Retrievers</div><div class="v">4<span class="u"> versions</span></div></div>
+      <div class="cell"><div class="k">Golden set</div><div class="v" style="font-size:clamp(16px,2.6vw,24px)">~50<span class="u"> Q&amp;A</span></div></div>
+      <div class="cell"><div class="k">Vector store</div><div class="v" style="font-size:clamp(15px,2.4vw,20px)">pgvector</div></div>
+      <div class="cell"><div class="k">API keys</div><div class="v">0</div></div>
+    </div>
+    <div class="tl-links" style="margin-top:24px;">
+      <a href="https://github.com/ghousee/flight-refund-rag" target="_blank" rel="noopener">View source on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+  </header>
+
+  <!-- 01 CONTEXT -->
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">01</span><span class="cs-sec-title">The problem</span></div>
+    <div class="cs-prose reveal">
+      <p>Refund rules for a cancelled flight are scattered across airline fare rules and government regulations, written in dense legal language. A plain LLM will answer confidently and sometimes wrongly, with nothing to check it against.</p>
+      <p>The goal was answers you can trust: every response <b>grounded in a specific source passage</b> and <b>cited</b>, so a reader can verify it. That is a retrieval problem first and a generation problem second.</p>
+    </div>
+  </section>
+
+  <!-- 02 ARCHITECTURE -->
+  <section class="cs-sec" id="architecture">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">02</span><span class="cs-sec-title">Architecture</span></div>
+    <div class="cs-prose reveal" style="margin-bottom:24px;">
+      <p>Two phases. <b>Ingest</b> runs offline: policy PDFs are parsed to a structured markdown vault, chunked, embedded, and stored in PostgreSQL. <b>Query</b> runs online: a question is embedded, matched against the vector store, and answered by a local LLM that quotes its sources.</p>
+    </div>
+    <figure class="cs-figure reveal">
+      <svg viewBox="0 0 1040 360" role="img" aria-label="Ingest phase: PDFs are parsed with PyMuPDF into a markdown and YAML vault, chunked and embedded, and stored in PostgreSQL with pgvector. Query phase: a question is embedded, retrieved from the vector store, passed to a local LLM, and returned as a cited answer.">
+        <text class="dg-stage" x="20" y="42">Ingest · offline</text>
+        <text class="dg-stage" x="20" y="236">Query · online</text>
+
+        <!-- ingest edges -->
+        <path class="dg-edge-live" d="M160 82 H 190" />
+        <path class="dg-edge-live" d="M340 82 H 370" />
+        <path class="dg-edge-live" d="M530 82 H 560" />
+        <path class="dg-edge-live" d="M650 105 V 132 H 555 V 150" />
+        <!-- store feeds retrieve -->
+        <path class="dg-edge" d="M470 208 V 230 H 415 V 250" />
+        <!-- query edges -->
+        <path class="dg-edge-live" d="M160 272 H 190" />
+        <path class="dg-edge-live" d="M320 272 H 340" />
+        <path class="dg-edge-live" d="M490 272 H 520" />
+        <path class="dg-edge-live" d="M700 272 H 730" />
+
+        <!-- ingest nodes -->
+        <rect class="dg-node" x="20" y="60" width="140" height="46" rx="10"/><text class="dg-label" x="36" y="82">PDFs</text><text class="dg-sub" x="36" y="97">airline + gov policy</text>
+        <rect class="dg-node" x="190" y="60" width="150" height="46" rx="10"/><text class="dg-label" x="206" y="82">Parse</text><text class="dg-sub" x="206" y="97">PyMuPDF</text>
+        <rect class="dg-node" x="370" y="60" width="160" height="46" rx="10"/><text class="dg-label" x="386" y="82">Vault</text><text class="dg-sub" x="386" y="97">markdown + YAML</text>
+        <rect class="dg-node" x="560" y="60" width="180" height="46" rx="10"/><text class="dg-label" x="576" y="82">Chunk + embed</text><text class="dg-sub" x="576" y="97">bge-small-en</text>
+
+        <!-- vector store hub -->
+        <rect class="dg-node-core" x="430" y="150" width="250" height="58" rx="11"/><text class="dg-label" x="448" y="178">PostgreSQL + pgvector</text><text class="dg-sub" x="448" y="196">384-dim vector store</text>
+
+        <!-- query nodes -->
+        <rect class="dg-node" x="20" y="250" width="140" height="46" rx="10"/><text class="dg-label" x="36" y="272">Question</text><text class="dg-sub" x="36" y="287">user query</text>
+        <rect class="dg-node" x="190" y="250" width="130" height="46" rx="10"/><text class="dg-label" x="206" y="272">Embed</text><text class="dg-sub" x="206" y="287">same model</text>
+        <rect class="dg-node" x="340" y="250" width="150" height="46" rx="10"/><text class="dg-label" x="356" y="272">Retrieve</text><text class="dg-sub" x="356" y="287">top-k passages</text>
+        <rect class="dg-node-core" x="520" y="250" width="180" height="46" rx="10"/><text class="dg-label" x="536" y="272">LLM</text><text class="dg-sub" x="536" y="287">Ollama llama3.2</text>
+        <rect class="dg-node" x="730" y="250" width="200" height="46" rx="10"/><text class="dg-label" x="746" y="272">Answer</text><text class="dg-sub" x="746" y="287">with citations</text>
+      </svg>
+      <figcaption class="cs-figcap">Ingest builds the vector store from policy PDFs; query embeds the question, retrieves passages, and a local LLM answers with citations.</figcaption>
+    </figure>
+  </section>
+
+  <!-- 03 RETRIEVERS -->
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">03</span><span class="cs-sec-title">Four retrievers, each better than the last</span></div>
+    <div class="cs-prose reveal" style="margin-bottom:24px;">
+      <p>Retrieval quality is what makes or breaks a RAG system, so I built four versions to compare, from a plain baseline to metadata-aware filtering.</p>
+    </div>
+    <div class="cs-decisions">
+      <div class="cs-decision reveal">
+        <h4 data-k="v1">Naive vector search</h4>
+        <p>Straight cosine similarity over the embeddings. A baseline to measure everything else against.</p>
+      </div>
+      <div class="cs-decision reveal">
+        <h4 data-k="v2">Hybrid (BM25 + vector)</h4>
+        <p>Fuses lexical <b>BM25</b> with dense vector search via <b>reciprocal rank fusion</b>, so exact-term matches that pure embeddings miss still surface.</p>
+      </div>
+      <div class="cs-decision reveal">
+        <h4 data-k="v3">Reranked</h4>
+        <p>Takes the hybrid candidates and reorders them with a <b>cross-encoder reranker</b>, which reads query and passage together for a sharper relevance judgment.</p>
+      </div>
+      <div class="cs-decision reveal">
+        <h4 data-k="v4">Metadata self-query</h4>
+        <p>Uses the YAML frontmatter (<b>airline, jurisdiction, doc type, topic</b>) to filter before ranking, so a question about one airline in one country doesn't retrieve another's rules.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 EVALUATION & CHOICES -->
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">04</span><span class="cs-sec-title">Evaluation &amp; design choices</span></div>
+    <div class="cs-builds">
+      <div class="cs-build reveal">
+        <h4>A golden set to measure against</h4>
+        <p>~50 hand-authored question and answer pairs form a reproducible evaluation set, scored with <b>RAGAS</b> and custom metrics (recall@5, MRR, faithfulness). Metrics are still being finalized, but the harness is in place so retriever changes are measured, not guessed.</p>
+        <span class="result">Retriever quality is a number, not an opinion</span>
+      </div>
+      <div class="cs-build reveal">
+        <h4>Local-first, zero API keys</h4>
+        <p>Embeddings (<b>bge-small-en</b>) and generation (<b>Ollama llama3.2</b>) both run locally, so the system works with no external services or keys. Claude is an optional drop-in for the LLM.</p>
+        <span class="result">Runs fully offline; cheap to iterate</span>
+      </div>
+      <div class="cs-build reveal">
+        <h4>A structured, version-controlled corpus</h4>
+        <p>Policies live as a markdown vault with <b>YAML frontmatter</b>, which is what makes metadata filtering possible and keeps the corpus git-diffable, so a policy change is a reviewable commit.</p>
+        <span class="result">The knowledge base is auditable and trackable</span>
+      </div>
+    </div>
+    <div class="cs-prose reveal" style="margin-top:22px;">
+      <p style="font-size:14px;color:var(--ink-faint)">An educational portfolio project with no airline affiliation. It provides no legal advice; source documents were downloaded locally for educational use only.</p>
+    </div>
+    <div class="stack reveal" style="margin-top:22px;">
+      <span class="chip">Python</span><span class="chip">LangChain</span><span class="chip">PostgreSQL</span><span class="chip">pgvector</span><span class="chip">Ollama (llama3.2)</span><span class="chip">bge-small-en</span><span class="chip">BM25</span><span class="chip">cross-encoder rerank</span><span class="chip">PyMuPDF</span><span class="chip">RAGAS</span><span class="chip">Docker Compose</span>
+    </div>
+  </section>
+
+  <!-- prev / next -->
+  <nav class="cs-foot-nav">
+    <a href="payroll-system.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> <span class="label">Previous</span> Payroll System</a>
+    <a href="../index.html#work"><span class="label">Back to</span> All work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </nav>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© <span id="yr"></span> Ghouse Mohiuddin Mohammed · Built &amp; hosted on GitHub Pages</div>
+    <div><a href="https://github.com/ghousee" target="_blank" rel="noopener">github.com/ghousee</a></div>
+  </div>
+</footer>
+
+<script src="../assets/site.js?v=3" defer></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ghouse Mohiuddin Mohammed, Full Stack Developer</title>
+<meta name="description" content="Ghouse Mohiuddin Mohammed, full-stack developer. Built a 400M+ row Redshift warehouse and a FastAPI + React analytics app for ~60 users, with a hot/cold architecture that cut serving sync ~99%. Based in Toronto, open across Canada." />
+
+<!-- Open Graph / link previews -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Ghouse Mohiuddin Mohammed, Full Stack Developer" />
+<meta property="og:description" content="Full-stack developer. A 400M+ row Redshift warehouse, a FastAPI + React app for ~60 users, and a hot/cold architecture with fingerprint sync (~99% faster) and 100-1000x query gains. Open across Canada." />
+<meta property="og:image" content="assets/img/Ghouse.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css?v=7" />
+</head>
+<body>
+
+<!-- site-wide ambient data-pipeline backdrop (3D, lazy, behind all content) -->
+<canvas id="pipe-bg" aria-hidden="true"></canvas>
+
+<!-- intro overlay: CSS-only, self-dismissing. Skipped entirely under prefers-reduced-motion. -->
+<div id="intro" aria-hidden="true">
+  <div class="intro-inner">
+    <span class="intro-line">Hello, my name is</span>
+    <span class="intro-name">Ghouse <span class="accent">Mohiuddin</span></span>
+    <span class="intro-line">welcome to my portfolio space</span>
+    <span class="intro-bar"></span>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand"><span class="dot"></span>ghouse.dev</div>
+    <div class="nav-links">
+      <a href="#work"><span class="idx">01</span>Work</a>
+      <a href="#experience"><span class="idx">02</span>Experience</a>
+      <a href="#skills"><span class="idx">03</span>Skills</a>
+      <a href="#contact"><span class="idx">04</span>Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <img class="hero-avatar" src="assets/img/Ghouse.jpg" alt="Ghouse Mohiuddin Mohammed" width="66" height="66" />
+    <div class="eyebrow">Full Stack Developer · Toronto · <span style="color:var(--signal)">Open to work across Canada</span></div>
+    <h1>Ghouse Mohiuddin<br/><span class="accent">Mohammed</span>.</h1>
+    <p class="lede">I'm a <b>full-stack developer</b> who's happiest where data meets decisions. I build the ETL pipelines and warehouses, then the apps that turn all that data into something people actually use. Lately I've been getting deeper into <b>machine learning, AI, and agentic systems</b>, and the <b>math</b> behind them. Right now I'm on co-op at Apex Mobile Media and wrapping up my MS at Northeastern.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#work">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        See my work
+      </a>
+      <a class="btn ghost" href="assets/GhouseMohiuddin_Mohammed_Resume.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3"/></svg>
+        Résumé
+      </a>
+      <a class="btn ghost" href="#contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6h20v12H2z"/><path d="M22 6l-10 7L2 6"/></svg>
+        Contact
+      </a>
+    </div>
+
+    <div class="status reveal">
+      <div class="cell"><div class="k">Warehouse</div><div class="v" style="font-size:clamp(15px,2.4vw,22px)">400M<span class="u">+ rows</span></div></div>
+      <div class="cell"><div class="k">Serving sync</div><div class="v">−99<span class="u">%</span></div></div>
+      <div class="cell"><div class="k">Query gains</div><div class="v" style="font-size:clamp(15px,2.4vw,22px)">100-1000<span class="u">×</span></div></div>
+      <div class="cell"><div class="k">Status</div><div class="v" style="font-size:clamp(15px,2.4vw,20px);color:var(--signal)">Open to work</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">01</span>
+      <span class="sec-title">Selected Work</span>
+      <span class="sec-sub">// case studies + repos</span>
+    </div>
+
+    <div class="proj-grid">
+
+      <a class="card feature reveal" href="work/apex-analytics.html">
+        <div class="card-top"><span class="card-id">CASE_01</span><span class="card-lang"><span class="sq"></span>Data + Full-Stack</span></div>
+        <h3>Apex, Data Platform + Analytics App</h3>
+        <p>Two production systems, solo: an ETL/ELT platform feeding a 400M+ row Redshift warehouse, and a FastAPI + React app for ~60 users. A hot/cold architecture cut serving sync ~99%, with 100-1000× query speedups.</p>
+        <div class="card-tags"><span>Python</span><span>FastAPI</span><span>Redshift</span><span>AWS</span></div>
+        <span class="card-link cs">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+
+      <a class="card feature reveal" href="work/asl-translator.html">
+        <div class="card-top"><span class="card-id">CASE_02</span><span class="card-lang"><span class="sq"></span>ML · CV · APIs</span></div>
+        <h3>ASL &amp; Speech Translator</h3>
+        <p>Real-time ASL sign recognition (CNN + OpenCV) plus speech-to-translated-speech across 100+ languages via Google APIs.</p>
+        <div class="card-tags"><span>Keras</span><span>OpenCV</span><span>Google APIs</span><span>Python</span></div>
+        <span class="card-link cs">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+
+      <a class="card feature reveal" href="work/payroll-system.html">
+        <div class="card-top"><span class="card-id">CASE_03</span><span class="card-lang"><span class="sq"></span>C# · MySQL</span></div>
+        <h3>Payroll Management System</h3>
+        <p>A complete C#/.NET + MySQL payroll app: authentication, employee CRUD, salary calculation, and Crystal Reports payslips.</p>
+        <div class="card-tags"><span>C#</span><span>.NET</span><span>MySQL</span><span>Crystal Reports</span></div>
+        <span class="card-link cs">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+
+      <a class="card feature reveal" href="work/flight-refund-rag.html">
+        <div class="card-top"><span class="card-id">CASE_04</span><span class="card-lang"><span class="sq"></span>RAG · LLM</span></div>
+        <h3>Flight Refund RAG</h3>
+        <p>A local retrieval-augmented generation system that answers refund-policy questions with cited, source-grounded answers, across four progressively better retrievers.</p>
+        <div class="card-tags"><span>LangChain</span><span>pgvector</span><span>Ollama</span><span>Python</span></div>
+        <span class="card-link cs">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+
+    </div>
+
+    <p class="proj-more reveal">More on GitHub, 
+      <a href="https://github.com/ghousee/Stock-Market-Prediction" target="_blank" rel="noopener">Stock Market Prediction</a><span class="sep">·</span><a href="https://github.com/ghousee/Exploratory-Data-Analysis-Retail-" target="_blank" rel="noopener">Retail EDA</a><span class="sep">·</span><a href="https://github.com/ghousee/Restaurant-Review-Website" target="_blank" rel="noopener">Restaurant Review</a>
+    </p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">02</span>
+      <span class="sec-title">Journey</span>
+      <span class="sec-sub">// click a milestone, undergrad to co-op</span>
+    </div>
+
+    <div class="tl reveal">
+      <div class="tl-track" role="tablist" aria-label="Education and experience timeline">
+        <button class="tl-node" role="tab" aria-controls="tl-btech" data-target="tl-btech">
+          <span class="tl-year">2019 to 2023</span>
+          <span class="tl-role">BTech, Information Technology</span>
+          <span class="tl-org">Manipal Institute of Technology · India</span>
+        </button>
+        <button class="tl-node" role="tab" aria-controls="tl-ms" data-target="tl-ms">
+          <span class="tl-year">2024 to 2026</span>
+          <span class="tl-role">MS, Information Systems</span>
+          <span class="tl-org">Northeastern University · Toronto</span>
+        </button>
+        <button class="tl-node" role="tab" aria-controls="tl-ccep" data-target="tl-ccep">
+          <span class="tl-year">2025</span>
+          <span class="tl-role">Service-Learning (CCEP)</span>
+          <span class="tl-org">Northeastern · Volunteer</span>
+        </button>
+        <button class="tl-node active" role="tab" aria-controls="tl-coop" data-target="tl-coop" aria-selected="true">
+          <span class="tl-year">Jan to Aug 2026</span>
+          <span class="tl-role">Full Stack Developer, Co-op <span class="tl-cur">CURRENT</span></span>
+          <span class="tl-org">Apex Mobile Media · Toronto</span>
+        </button>
+      </div>
+
+      <div class="tl-detail">
+        <div class="tl-content" id="tl-btech" role="tabpanel">
+          <ul>
+            <li>Final-year thesis on <b>pattern identification &amp; model complexity in large language models</b>: few-shot learning with GPT-2/GPT-3 and machine teaching, framed through Occam's razor.</li>
+            <li>Built the CS foundation: data structures &amp; algorithms, OOP, operating systems, DBMS, and <b>object-oriented system design</b> (UML for a freelance-marketplace domain model).</li>
+          </ul>
+          <div class="stack"><span class="chip">Python</span><span class="chip">Java</span><span class="chip">C++</span><span class="chip">UML / System Design</span><span class="chip">ML</span></div>
+          <div class="tl-links">
+            <a href="work/system-design.html#uml">View the UML system design <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+
+        <div class="tl-content" id="tl-ms" role="tabpanel">
+          <ul>
+            <li>Specializing in <b>data systems</b>: relational modelling, ERDs, data warehousing, and applied machine learning.</li>
+            <li>Applied AI: a <b>retrieval-augmented generation</b> system that answers policy questions with cited, source-grounded answers (LangChain, pgvector, a local LLM).</li>
+            <li>Designed a normalized <b>relational ERD</b> for a student-housing platform (DAMG 6210), implemented end to end in SQL.</li>
+          </ul>
+          <div class="stack"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">scikit-learn</span><span class="chip">Data Warehousing</span><span class="chip">ERD / Modelling</span></div>
+          <div class="tl-links">
+            <a href="work/flight-refund-rag.html">Read the Flight Refund RAG case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href="work/system-design.html#erd">View the ERD system design <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+
+        <div class="tl-content" id="tl-ccep" role="tabpanel">
+          <ul>
+            <li>Built &amp; deployed a <b>menu-driven Flask chatbot</b> on Azure for Northeastern's Toronto campus, answering student and newcomer queries.</li>
+            <li>Engineered the deployment to <b>$0 infrastructure cost</b>; stakeholder-driven conversational flows, accessibility-aware.</li>
+            <li>Earned Northeastern's <b>Co-Curricular Community Service-Learning: Advanced</b> badge (20+ verified volunteer hours).</li>
+          </ul>
+          <div class="stack"><span class="chip">Flask</span><span class="chip">Python</span><span class="chip">Microsoft Azure</span><span class="chip">REST APIs</span></div>
+        </div>
+
+        <div class="tl-content active" id="tl-coop" role="tabpanel">
+          <ul>
+            <li>Built an <b>ETL/ELT platform</b> feeding a <b>400M+ row</b> Redshift warehouse from 12+ sources on unattended nightly runs; account management reports went from hours/days to seconds.</li>
+            <li>Built a <b>FastAPI + React</b> analytics app on AWS for <b>~60 users</b>: JWT + 10-role RBAC, 30+ modules, and <b>100-1000×</b> query speedups.</li>
+            <li>Designed a <b>hot/cold two-tier architecture</b> (Redshift → Parquet/DuckDB → PostgreSQL) with fingerprint-based incremental sync, cutting serving-layer sync <b>~99%</b>.</li>
+          </ul>
+          <div class="stack"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">React/TS</span><span class="chip">Redshift</span><span class="chip">PostgreSQL</span><span class="chip">DuckDB</span><span class="chip">AWS</span></div>
+          <div class="tl-links">
+            <a href="work/apex-analytics.html">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href="work/apex-analytics.html#architecture">View the system design <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">03</span>
+      <span class="sec-title">Skills</span>
+      <span class="sec-sub">// the working set</span>
+    </div>
+    <div class="skills-one reveal">
+      <div class="tag-cloud">
+        <span>React.js</span><span>TypeScript</span><span>JavaScript</span><span>Node.js</span><span>Python</span><span>Java</span><span>SQL</span><span>Redshift</span><span>AWS (EC2/S3)</span><span>ETL / ELT</span><span>Data Warehousing</span><span>REST APIs</span><span>Docker</span><span>Git</span><span>MongoDB</span><span>Azure</span>
+      </div>
+      <div class="skills-ai">
+        <span class="skills-ai-label">AI-assisted workflow</span>
+        <div class="tag-cloud">
+          <span>Claude Code</span><span>ChatGPT (GPT-5.5)</span><span>Claude (system design)</span><span>Gemini</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <h2>Let's build something<br/><span class="accent">that ships.</span></h2>
+      <p>Open to full-time full stack and data-focused roles across Canada. Fastest way to reach me is email or LinkedIn.</p>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:mgmohiuddin2001@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6h20v12H2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          mgmohiuddin2001@gmail.com
+        </a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/ghouse-mohiuddin-mohammed/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.3 18V10H5.7v8h2.6zM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm11 9.2v-4.6c0-2.4-1.3-3.5-3-3.5-1.4 0-2 .8-2.3 1.3V10H10v8h2.6v-4.4c0-1.2.8-1.7 1.5-1.7s1.3.5 1.3 1.7V18H18z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn ghost" href="tel:+14379336782">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          437 933 6782
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© <span id="yr"></span> Ghouse Mohiuddin Mohammed · Built &amp; hosted on GitHub Pages</div>
+    <div><a href="https://github.com/ghousee" target="_blank" rel="noopener">github.com/ghousee</a></div>
+  </div>
+</footer>
+
+<script src="assets/site.js?v=4" defer></script>
+<script src="assets/landing.js?v=7" type="module"></script>
+
+</body>
+</html>

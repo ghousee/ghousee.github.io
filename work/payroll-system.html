@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Payroll Management System, Ghouse Mohiuddin Mohammed</title>
+<meta name="description" content="A complete C# (.NET WinForms) payroll desktop application over MySQL, authentication, employee records, automated gross/deduction/net-pay calculation, and printable payslips via Crystal Reports." />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Payroll Management System" />
+<meta property="og:description" content="A complete C#/.NET + MySQL payroll system: auth, employee CRUD, salary calculation, and Crystal Reports payslips." />
+<meta property="og:image" content="../assets/img/Ghouse.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/style.css?v=3" />
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html"><span class="dot"></span>ghouse.dev</a>
+    <div class="nav-links">
+      <a href="../index.html#work"><span class="idx">←</span>All work</a>
+      <a href="../index.html#contact"><span class="idx">04</span>Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <a class="cs-back" href="../index.html#work">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to all work
+  </a>
+
+  <header class="cs-hero">
+    <div class="cs-eyebrow"><span>Desktop · Full CRUD</span><span class="sep">·</span><span>C# · .NET WinForms · MySQL · Crystal Reports</span></div>
+    <h1 class="cs-title">Payroll, <span style="color:var(--signal)">end to end</span>.</h1>
+    <p class="cs-sub">A complete desktop payroll system on a MySQL database: <b>login and authentication</b>, employee records, automated <b>gross / deduction / net-pay</b> calculation, and printable <b>payslips</b> through Crystal Reports.</p>
+
+    <div class="status cs-metrics reveal">
+      <div class="cell"><div class="k">Stack</div><div class="v" style="font-size:clamp(15px,2.4vw,20px)">C# / .NET</div></div>
+      <div class="cell"><div class="k">Database</div><div class="v" style="font-size:clamp(15px,2.4vw,20px)">MySQL</div></div>
+      <div class="cell"><div class="k">Modules</div><div class="v">5</div></div>
+      <div class="cell"><div class="k">Payslips</div><div class="v" style="font-size:clamp(15px,2.4vw,20px)">Crystal<span class="u"> Reports</span></div></div>
+    </div>
+  </header>
+
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">01</span><span class="cs-sec-title">The problem</span></div>
+    <div class="cs-prose reveal">
+      <p>Small organizations still run payroll on spreadsheets, error-prone, hard to audit, and impossible to hand a clean payslip from. I built a self-contained desktop system that stores employees in a real relational database, calculates pay consistently, and prints a proper payslip every time.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec" id="modules">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">02</span><span class="cs-sec-title">The system</span></div>
+    <figure class="cs-figure reveal">
+      <svg viewBox="0 0 1000 300" role="img" aria-label="A login gate leads to four modules, employees, payroll, reports, and users, all backed by a MySQL database.">
+        <path class="dg-edge-live" d="M205 110 H 250"/>
+        <path class="dg-edge" d="M420 90 H 470"/>
+        <path class="dg-edge" d="M420 110 C 445 110, 445 60, 470 60"/>
+        <path class="dg-edge" d="M420 130 C 445 130, 445 160, 470 160"/>
+        <path class="dg-edge" d="M420 130 C 445 130, 445 220, 470 220"/>
+        <path class="dg-edge-live" d="M650 60 C 720 60, 720 250, 60 250 L 60 136"/>
+        <path class="dg-edge-live" d="M650 160 H 758"/>
+
+        <rect class="dg-node" x="40" y="84" width="165" height="52" rx="10"/><text class="dg-label" x="58" y="108">Login</text><text class="dg-sub" x="58" y="124">auth</text>
+        <rect class="dg-node-core" x="250" y="84" width="170" height="52" rx="11"/><text class="dg-label" x="268" y="108">Dashboard</text><text class="dg-sub" x="268" y="124">role-aware menu</text>
+
+        <rect class="dg-node" x="470" y="38" width="180" height="44" rx="10"/><text class="dg-sub" x="488" y="65">▸ Employees (CRUD)</text>
+        <rect class="dg-node" x="470" y="90" width="180" height="44" rx="10"/><text class="dg-sub" x="488" y="117">▸ Payroll (calc)</text>
+        <rect class="dg-node" x="470" y="142" width="180" height="44" rx="10"/><text class="dg-sub" x="488" y="169">▸ Reports (payslips)</text>
+        <rect class="dg-node" x="470" y="198" width="180" height="44" rx="10"/><text class="dg-sub" x="488" y="225">▸ Users</text>
+
+        <rect class="dg-node-core" x="758" y="134" width="200" height="52" rx="11"/><text class="dg-label" x="776" y="158">MySQL</text><text class="dg-sub" x="776" y="174">payrolldb</text>
+      </svg>
+      <figcaption class="cs-figcap">Login → role-aware dashboard → modules, all backed by a MySQL database.</figcaption>
+    </figure>
+  </section>
+
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">03</span><span class="cs-sec-title">What I built</span></div>
+    <div class="cs-builds">
+      <div class="cs-build reveal">
+        <h4>Authentication + employee records</h4>
+        <p>A login gate guards the app, and an employee module does full <b>create / read / update / delete</b> over MySQL, the system of record for everyone on payroll.</p>
+        <span class="result">One trusted source for employee data</span>
+      </div>
+      <div class="cs-build reveal">
+        <h4>A consistent pay calculation</h4>
+        <p>The payroll module computes <b>gross pay, deductions, and net pay</b> the same way every run, so the numbers are reproducible and auditable instead of hand-typed.</p>
+        <span class="result">Pay that's calculated, not guessed</span>
+      </div>
+      <div class="cs-build reveal">
+        <h4>Printable payslips with Crystal Reports</h4>
+        <p>Integrated <b>Crystal Reports</b> to turn the computed payroll into a formatted, printable payslip, the document an employee actually receives.</p>
+        <span class="result">A real artifact at the end of the workflow</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">04</span><span class="cs-sec-title">What it shows</span></div>
+    <div class="cs-prose reveal">
+      <p>A complete, shipped application across the whole stack: the UI, a relational data model, financial calculations that have to be right, and document generation. I designed it from an <b>ER diagram</b> first, then built it out module by module.</p>
+    </div>
+  </section>
+
+  <nav class="cs-foot-nav">
+    <a href="asl-translator.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> <span class="label">Previous</span> ASL &amp; Speech Translator</a>
+    <a href="flight-refund-rag.html"><span class="label">Next case study</span> Flight Refund RAG <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </nav>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© <span id="yr"></span> Ghouse Mohiuddin Mohammed · Built &amp; hosted on GitHub Pages</div>
+    <div><a href="https://github.com/ghousee" target="_blank" rel="noopener">github.com/ghousee</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js?v=3" defer></script>
+</body>
+</html>

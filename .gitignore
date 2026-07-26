@@ -1,0 +1,18 @@
+# Whitelist: ignore everything at the repo root by default...
+/*
+
+# ...then re-include ONLY the portfolio site that should be public.
+!/index.html
+!/assets/
+!/work/
+!/README.md
+!/.gitignore
+!/.nojekyll
+
+# Belt-and-suspenders: never track these even if the rules above change.
+Projects/
+.claude/
+*.env
+.env*
+*.pem
+*.key

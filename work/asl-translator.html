@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ASL & Speech Translator, Ghouse Mohiuddin Mohammed</title>
+<meta name="description" content="A multimodal communication tool: real-time ASL hand-sign recognition with a trained CNN (OpenCV + Keras) and an AI speech translator across 100+ languages using Google Speech, Translate, and text-to-speech." />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="ASL & Speech Translator" />
+<meta property="og:description" content="Real-time ASL recognition (CNN + OpenCV) plus speech-to-translated-speech across 100+ languages with Google APIs." />
+<meta property="og:image" content="../assets/img/Ghouse.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/style.css?v=3" />
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html"><span class="dot"></span>ghouse.dev</a>
+    <div class="nav-links">
+      <a href="../index.html#work"><span class="idx">←</span>All work</a>
+      <a href="../index.html#contact"><span class="idx">04</span>Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <a class="cs-back" href="../index.html#work">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to all work
+  </a>
+
+  <header class="cs-hero">
+    <div class="cs-eyebrow"><span>ML · Computer Vision · APIs</span><span class="sep">·</span><span>Python · TensorFlow/Keras · OpenCV</span></div>
+    <h1 class="cs-title">Sign, speak,<br/><span style="color:var(--signal)">translate</span>.</h1>
+    <p class="cs-sub">A multimodal accessibility tool: it recognizes <b>ASL hand signs</b> in real time with a trained CNN, and turns <b>speech into translated speech</b> across 100+ languages, wiring together a vision model and three Google APIs behind one desktop app.</p>
+
+    <div class="status cs-metrics reveal">
+      <div class="cell"><div class="k">Modalities</div><div class="v" style="font-size:clamp(15px,2.4vw,20px)">sign·speech·text</div></div>
+      <div class="cell"><div class="k">Languages</div><div class="v">100<span class="u">+</span></div></div>
+      <div class="cell"><div class="k">Model</div><div class="v" style="font-size:clamp(15px,2.4vw,20px)">CNN<span class="u"> (Keras)</span></div></div>
+      <div class="cell"><div class="k">APIs wired</div><div class="v" style="font-size:clamp(15px,2.4vw,20px)">3<span class="u"> Google</span></div></div>
+    </div>
+  </header>
+
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">01</span><span class="cs-sec-title">The idea</span></div>
+    <div class="cs-prose reveal">
+      <p>Two communication barriers, one tool. People who sign and people who don't share no common channel; people who speak different languages don't either. I wanted one app that bridges both: read a hand sign or hear a sentence, and get the meaning back in a form the other person understands.</p>
+    </div>
+    <blockquote class="cs-pull reveal">The interesting engineering is the <span class="accent">glue</span>, making a vision model and three APIs feel like one fluent tool.</blockquote>
+  </section>
+
+  <section class="cs-sec" id="flow">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">02</span><span class="cs-sec-title">How it flows</span></div>
+    <figure class="cs-figure reveal">
+      <svg viewBox="0 0 1000 320" role="img" aria-label="Two input tracks, a hand sign through OpenCV and a CNN, and speech through Google Speech-to-Text, feed text into Google Translate, which produces translated text and speech via gTTS.">
+        <text class="dg-stage" x="20" y="26">Input</text>
+        <text class="dg-stage" x="300" y="26">Recognize</text>
+        <text class="dg-stage" x="560" y="26">Translate</text>
+        <text class="dg-stage" x="820" y="26">Output</text>
+
+        <path class="dg-edge" d="M180 96 H 288"/>
+        <path class="dg-edge" d="M180 232 H 288"/>
+        <path class="dg-edge-live" d="M470 96 C 510 96, 520 150, 558 150"/>
+        <path class="dg-edge-live" d="M470 232 C 510 232, 520 162, 558 162"/>
+        <path class="dg-edge-live" d="M720 156 H 818"/>
+
+        <rect class="dg-node" x="20" y="70" width="160" height="52" rx="10"/><text class="dg-label" x="38" y="94">Hand sign</text><text class="dg-sub" x="38" y="110">webcam ROI</text>
+        <rect class="dg-node" x="20" y="206" width="160" height="52" rx="10"/><text class="dg-label" x="38" y="230">Speech</text><text class="dg-sub" x="38" y="246">microphone</text>
+
+        <rect class="dg-node-core" x="288" y="68" width="182" height="56" rx="11"/><text class="dg-label" x="306" y="92">CNN (Keras)</text><text class="dg-sub" x="306" y="109">OpenCV · threshold</text>
+        <rect class="dg-node-core" x="288" y="204" width="182" height="56" rx="11"/><text class="dg-label" x="306" y="228">Speech→Text</text><text class="dg-sub" x="306" y="245">Google SR</text>
+
+        <rect class="dg-node-core" x="558" y="128" width="162" height="56" rx="11"/><text class="dg-label" x="576" y="152">Translate</text><text class="dg-sub" x="576" y="169">Google · 100+ langs</text>
+
+        <rect class="dg-node" x="818" y="100" width="162" height="52" rx="10"/><text class="dg-sub" x="836" y="131">▸ translated text</text>
+        <rect class="dg-node" x="818" y="164" width="162" height="52" rx="10"/><text class="dg-sub" x="836" y="195">▸ spoken (gTTS)</text>
+      </svg>
+      <figcaption class="cs-figcap">Two input tracks → recognition → one translation step → text and speech out.</figcaption>
+    </figure>
+  </section>
+
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">03</span><span class="cs-sec-title">What I built</span></div>
+    <div class="cs-builds">
+      <div class="cs-build reveal">
+        <h4>Real-time ASL recognition</h4>
+        <p>Trained a <b>CNN in Keras</b> on an ASL dataset, then ran it live: OpenCV grabs a region of interest from the webcam, grayscales and thresholds it, and the model predicts the sign frame-by-frame.</p>
+        <span class="result">A hand sign becomes text, live from a webcam</span>
+      </div>
+      <div class="cs-build reveal">
+        <h4>An AI speech translator</h4>
+        <p>Chained three Google services: <b>Speech Recognition</b> (speech → text), <b>Translate</b> (100+ languages), and <b>gTTS</b> (text → spoken audio), with pygame for playback, so a spoken sentence comes back translated and read aloud.</p>
+        <span class="result">Speak in one language, hear it in another</span>
+      </div>
+      <div class="cs-build reveal">
+        <h4>One desktop app to hold it together</h4>
+        <p>A Tkinter GUI ties the modalities into a single tool with language selection and live status, handling API errors gracefully (unrecognized audio, failed requests) rather than crashing.</p>
+        <span class="result">A coherent product, not a pile of scripts</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">04</span><span class="cs-sec-title">What it shows</span></div>
+    <div class="cs-prose reveal">
+      <p>This is the project where I integrated a <b>trained ML model</b>, <b>computer vision</b>, and <b>third-party APIs</b> into one working application, and handled the unglamorous parts (real-time capture, error states, audio I/O) that decide whether a demo is usable.</p>
+      <p><b>What I'd do next:</b> expand ASL recognition from letters to full words/phrases with a temporal model, and move the heavy inference behind a small service so the UI stays responsive.</p>
+    </div>
+  </section>
+
+  <nav class="cs-foot-nav">
+    <a href="apex-analytics.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> <span class="label">Previous</span> Apex Analytics</a>
+    <a href="payroll-system.html"><span class="label">Next case study</span> Payroll System <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </nav>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© <span id="yr"></span> Ghouse Mohiuddin Mohammed · Built &amp; hosted on GitHub Pages</div>
+    <div><a href="https://github.com/ghousee" target="_blank" rel="noopener">github.com/ghousee</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js?v=3" defer></script>
+</body>
+</html>
