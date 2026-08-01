@@ -42,16 +42,16 @@ export function initJourney3D(tl) {
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 100);
-  camera.position.set(0, 0, 9);
+  camera.position.set(0, 0, 10);
 
   // ---- node positions along a gentle 3D path ----
-  const spanX = Math.min(6.2, 2.05 * (N - 1));
+  const spanX = Math.min(4.4, 1.5 * (N - 1));
   const pts = data.map((d, i) => {
     const t = N > 1 ? i / (N - 1) : 0.5;
     return new THREE.Vector3(
       -spanX + t * 2 * spanX,
-      Math.sin(t * Math.PI * 1.6) * 0.95,
-      Math.cos(t * Math.PI * 1.3) * 1.5
+      Math.sin(t * Math.PI * 1.4) * 0.5,
+      Math.cos(t * Math.PI * 1.1) * 0.7
     );
   });
   const curve = new THREE.CatmullRomCurve3(pts, false, 'catmullrom', 0.6);
@@ -82,12 +82,12 @@ export function initJourney3D(tl) {
   scene.add(new THREE.Points(sGeo, new THREE.PointsMaterial({ color: 0x9fb2c8, size: 0.05, transparent: true, opacity: 0.55 })));
 
   // ---- milestone nodes ----
-  const coreGeo = new THREE.IcosahedronGeometry(0.46, 0);
-  const ringGeo = new THREE.TorusGeometry(0.72, 0.016, 8, 44);
+  const coreGeo = new THREE.IcosahedronGeometry(0.42, 0);
+  const ringGeo = new THREE.TorusGeometry(0.6, 0.014, 8, 44);
   const nodes = pts.map((p, i) => {
     const g = new THREE.Group();
     const core = new THREE.Mesh(coreGeo, new THREE.MeshBasicMaterial({ color: 0x13243a }));
-    const wire = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5, 0), new THREE.MeshBasicMaterial({ color: SIGNAL, wireframe: true, transparent: true, opacity: 0.5 }));
+    const wire = new THREE.Mesh(new THREE.IcosahedronGeometry(0.46, 0), new THREE.MeshBasicMaterial({ color: SIGNAL, wireframe: true, transparent: true, opacity: 0.5 }));
     const ring = new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({ color: SIGNAL, transparent: true, opacity: 0 }));
     g.add(core); g.add(wire); g.add(ring);
     g.position.copy(p);
@@ -119,7 +119,7 @@ export function initJourney3D(tl) {
     labels.forEach((l, k) => l.classList.toggle('active', k === i));
     // keep the hidden flat track in sync (so fallback + a11y state match)
     srcNodes.forEach((n, k) => n.classList.toggle('active', k === i));
-    camTargetX = nodes[i].position.x * 0.35;
+    camTargetX = nodes[i].position.x * 0.15;
   }
 
   // ---- interaction: hover + click on the 3D nodes ----
@@ -166,7 +166,7 @@ export function initJourney3D(tl) {
       const on = i === active, hv = i === hover;
       g.position.y = g.userData.base.y + Math.sin(t * 1.1 + i) * 0.06;
       g.userData.wire.rotation.x += dt * 0.5; g.userData.wire.rotation.y += dt * 0.7;
-      const target = on ? 1.5 : hv ? 1.22 : 1;
+      const target = on ? 1.32 : hv ? 1.15 : 1;
       g.scale.lerp(_v.set(target, target, target), 0.15);
       g.userData.core.material.color.lerp(on ? SIGNAL : new THREE.Color(0x13243a), 0.12);
       g.userData.ring.material.opacity += ((on ? 0.7 : 0) - g.userData.ring.material.opacity) * 0.1;
@@ -177,9 +177,9 @@ export function initJourney3D(tl) {
     // camera parallax + soft focus on the active node
     pointer.x += (pointer.tx - pointer.x) * 0.05;
     pointer.y += (pointer.ty - pointer.y) * 0.05;
-    camera.position.x += (camTargetX + pointer.x * 1.6 - camera.position.x) * 0.06;
-    camera.position.y += (-pointer.y * 1.0 - camera.position.y) * 0.06;
-    camera.lookAt(camTargetX * 0.6, 0, 0);
+    camera.position.x += (camTargetX + pointer.x * 1.0 - camera.position.x) * 0.06;
+    camera.position.y += (-pointer.y * 0.6 - camera.position.y) * 0.06;
+    camera.lookAt(camTargetX * 0.4, 0, 0);
 
     renderer.render(scene, camera);
 
@@ -187,7 +187,7 @@ export function initJourney3D(tl) {
     for (let i = 0; i < N; i++) {
       _v.copy(nodes[i].position); _v.project(camera);
       const x = (_v.x * 0.5 + 0.5) * width;
-      const y = (-_v.y * 0.5 + 0.5) * height + 70;
+      const y = (-_v.y * 0.5 + 0.5) * height + 60;
       labels[i].style.transform = `translate(-50%,-50%) translate(${x}px, ${y}px)`;
       labels[i].style.opacity = _v.z < 1 ? '' : '0';
     }

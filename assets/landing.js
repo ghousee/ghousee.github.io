@@ -38,7 +38,7 @@ if (tl && !reduce && bigEnough && !lowMemory && webglAvailable()) {
   const io = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting && !mounted) {
       mounted = true; io.disconnect();
-      import('./journey3d.js?v=2').then(({ initJourney3D }) => initJourney3D(tl)).catch(() => {});
+      import('./journey3d.js?v=3').then(({ initJourney3D }) => initJourney3D(tl)).catch(() => {});
     }
   }, { rootMargin: '400px' });
   io.observe(tl);
