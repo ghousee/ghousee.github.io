@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Flight Refund RAG · Ghouse Mohiuddin Mohammed</title>
-<meta name="description" content="A local retrieval-augmented generation system that answers flight-cancellation refund questions grounded in airline and government policy, with citations. LangChain, PostgreSQL + pgvector, local embeddings, and four progressively better retrievers." />
+<meta name="description" content="A local retrieval-augmented generation system that answers flight-cancellation refund questions grounded in airline and government policy, with citations. LangChain, PostgreSQL + pgvector, local embeddings, and four retrievers benchmarked on a golden set." />
 
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Flight Refund RAG" />
@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../assets/style.css?v=7" />
+<link rel="stylesheet" href="../assets/style.css?v=9" />
 </head>
 <body>
 
@@ -49,9 +49,9 @@
     <p class="cs-sub">A retrieval-augmented generation system that answers flight-cancellation refund questions grounded in real airline and government policy. Every answer carries <b>citations</b> to the source document, and the whole thing runs <b>locally with no API keys</b>.</p>
 
     <div class="status cs-metrics reveal">
-      <div class="cell"><div class="k">Retrievers</div><div class="v">4<span class="u"> versions</span></div></div>
-      <div class="cell"><div class="k">Golden set</div><div class="v" style="font-size:clamp(16px,2.6vw,24px)">~50<span class="u"> Q&amp;A</span></div></div>
-      <div class="cell"><div class="k">Vector store</div><div class="v" style="font-size:clamp(15px,2.4vw,20px)">pgvector</div></div>
+      <div class="cell"><div class="k">Retrievers</div><div class="v">4<span class="u"> compared</span></div></div>
+      <div class="cell"><div class="k">Best MRR</div><div class="v">0.83</div></div>
+      <div class="cell"><div class="k">Grounded refusals</div><div class="v" style="font-size:clamp(16px,2.6vw,24px)">4/5</div></div>
       <div class="cell"><div class="k">API keys</div><div class="v">0</div></div>
     </div>
     <div class="tl-links" style="margin-top:24px;">
@@ -114,9 +114,9 @@
 
   <!-- 03 RETRIEVERS -->
   <section class="cs-sec">
-    <div class="cs-sec-head reveal"><span class="cs-sec-num">03</span><span class="cs-sec-title">Four retrievers, each better than the last</span></div>
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">03</span><span class="cs-sec-title">Four retrievers, head to head</span></div>
     <div class="cs-prose reveal" style="margin-bottom:24px;">
-      <p>Retrieval quality is what makes or breaks a RAG system, so I built four versions to compare, from a plain baseline to metadata-aware filtering.</p>
+      <p>Retrieval quality makes or breaks a RAG system, so I built four versions and <b>measured</b> them against a golden set, rather than assuming more sophistication is automatically better.</p>
     </div>
     <div class="cs-decisions">
       <div class="cs-decision reveal">
@@ -138,15 +138,35 @@
     </div>
   </section>
 
-  <!-- 04 EVALUATION & CHOICES -->
+  <!-- 04 RESULTS -->
   <section class="cs-sec">
-    <div class="cs-sec-head reveal"><span class="cs-sec-num">04</span><span class="cs-sec-title">Evaluation &amp; design choices</span></div>
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">04</span><span class="cs-sec-title">Results</span></div>
+    <div class="cs-prose reveal" style="margin-bottom:20px;">
+      <p>I scored each retriever on a golden set (recall@5, MRR, hit-rate, latency). The result was a surprise: <b>two of the four "upgrades" made retrieval worse.</b></p>
+    </div>
+    <div class="cs-table-wrap reveal">
+      <table class="cs-table">
+        <thead><tr><th>Retriever</th><th>recall@5</th><th>MRR</th><th>hit-rate</th><th>latency</th></tr></thead>
+        <tbody>
+          <tr><td>v1 &middot; naive (vector)</td><td>0.67</td><td>0.65</td><td>0.80</td><td>0.08s</td></tr>
+          <tr><td>v2 &middot; hybrid (BM25 + vector)</td><td>0.60</td><td>0.61</td><td>0.70</td><td>0.09s</td></tr>
+          <tr class="win"><td>v3 &middot; reranked (cross-encoder)</td><td class="best">0.69</td><td class="best">0.83</td><td class="best">0.90</td><td>7.95s</td></tr>
+          <tr><td>v4 &middot; metadata (LLM filter)</td><td>0.43</td><td>0.42</td><td>0.50</td><td>1.06s</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cs-prose reveal" style="margin-top:20px;">
+      <p>Plain vector search (v1) was already strong at recall@5 <b>0.67</b>. Cross-encoder reranking (v3) was the clear winner on ranking quality (MRR <b>0.83</b>, hit-rate <b>0.90</b>), but at a real latency cost (~8s). Hybrid search added ranking noise, and metadata self-query over-filtered on semantic questions. The lesson: <b>measure, don't assume</b> more sophistication helps.</p>
+      <p>On 5 deliberately unanswerable questions, the system correctly <b>declined 4 (80%)</b> with grounded refusals instead of hallucinating an answer. Knowing when <i>not</i> to answer is part of being trustworthy.</p>
+      <p><b>Next:</b> isolate generation from retrieval by swapping the local 3B model for a frontier model, to separate synthesis errors from retrieval failures.</p>
+      <p style="font-size:13.5px;color:var(--ink-faint)">The golden set is n=20 answerable (+5 unanswerable), growing toward ~50, so these numbers are directional.</p>
+    </div>
+  </section>
+
+  <!-- 05 DESIGN CHOICES -->
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">05</span><span class="cs-sec-title">Design choices</span></div>
     <div class="cs-builds">
-      <div class="cs-build reveal">
-        <h4>A golden set to measure against</h4>
-        <p>~50 hand-authored question and answer pairs form a reproducible evaluation set, scored with <b>RAGAS</b> and custom metrics (recall@5, MRR, faithfulness). Metrics are still being finalized, but the harness is in place so retriever changes are measured, not guessed.</p>
-        <span class="result">Retriever quality is a number, not an opinion</span>
-      </div>
       <div class="cs-build reveal">
         <h4>Local-first, zero API keys</h4>
         <p>Embeddings (<b>bge-small-en</b>) and generation (<b>Ollama llama3.2</b>) both run locally, so the system works with no external services or keys. Claude is an optional drop-in for the LLM.</p>
@@ -162,7 +182,7 @@
       <p style="font-size:14px;color:var(--ink-faint)">An educational portfolio project with no airline affiliation. It provides no legal advice; source documents were downloaded locally for educational use only.</p>
     </div>
     <div class="stack reveal" style="margin-top:22px;">
-      <span class="chip">Python</span><span class="chip">LangChain</span><span class="chip">PostgreSQL</span><span class="chip">pgvector</span><span class="chip">Ollama (llama3.2)</span><span class="chip">bge-small-en</span><span class="chip">BM25</span><span class="chip">cross-encoder rerank</span><span class="chip">PyMuPDF</span><span class="chip">RAGAS</span><span class="chip">Docker Compose</span>
+      <span class="chip">Python 3.12</span><span class="chip">LangChain</span><span class="chip">PostgreSQL</span><span class="chip">pgvector</span><span class="chip">Ollama (llama3.2)</span><span class="chip">bge-small-en</span><span class="chip">BM25</span><span class="chip">cross-encoder rerank</span><span class="chip">PyMuPDF</span><span class="chip">RAGAS</span><span class="chip">Docker Compose</span>
     </div>
   </section>
 
