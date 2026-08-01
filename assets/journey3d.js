@@ -45,7 +45,7 @@ export function initJourney3D(tl) {
   camera.position.set(0, 0, 10);
 
   // ---- node positions along a gentle 3D path ----
-  const spanX = Math.min(4.4, 1.5 * (N - 1));
+  const spanX = Math.min(4.9, 1.65 * (N - 1));
   const pts = data.map((d, i) => {
     const t = N > 1 ? i / (N - 1) : 0.5;
     return new THREE.Vector3(
