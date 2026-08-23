@@ -11,9 +11,10 @@ export function initPipelineBG(canvas) {
   const SIGNAL = new THREE.Color('#4ade80');
   const TEAL = new THREE.Color('#2fd6a6');
   let width = window.innerWidth, height = window.innerHeight;
+  const small = width < 720; // phones: lighter particle counts + pixel ratio
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, small ? 1.4 : 1.75));
   renderer.setSize(width, height, false);
 
   const scene = new THREE.Scene();
@@ -52,7 +53,7 @@ export function initPipelineBG(canvas) {
   });
 
   // ---- conduit particles (flow down the path) ----
-  const PN = 220;
+  const PN = small ? 110 : 220;
   const pPos = new Float32Array(PN * 3);
   const pT = new Float32Array(PN);
   for (let i = 0; i < PN; i++) pT[i] = Math.random();
@@ -64,7 +65,7 @@ export function initPipelineBG(canvas) {
   scene.add(particles);
 
   // ---- foreground streaks (fly past the camera for depth + speed) ----
-  const FN = 90;
+  const FN = small ? 42 : 90;
   const fPos = new Float32Array(FN * 3);
   const fOff = []; // {x, y, z}
   for (let i = 0; i < FN; i++) fOff.push({ x: (Math.random() - 0.5) * 22, y: (Math.random() - 0.5) * 22, z: 2 + Math.random() * 8 });
@@ -76,7 +77,7 @@ export function initPipelineBG(canvas) {
   scene.add(streaks);
 
   // ---- stars ----
-  const SN = 150, sPos = new Float32Array(SN * 3);
+  const SN = (small ? 80 : 150), sPos = new Float32Array(SN * 3);
   for (let i = 0; i < SN; i++) { sPos[i*3]=(Math.random()-0.5)*34; sPos[i*3+1]=(Math.random()-0.5)*26; sPos[i*3+2]=-8-Math.random()*16; }
   const sGeo = new THREE.BufferGeometry(); sGeo.setAttribute('position', new THREE.BufferAttribute(sPos, 3));
   scene.add(new THREE.Points(sGeo, new THREE.PointsMaterial({ color: 0x9fb2c8, size: 0.05, transparent: true, opacity: 0.45 })));

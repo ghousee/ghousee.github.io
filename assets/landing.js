@@ -17,10 +17,12 @@ const bigEnough = window.innerWidth >= 720;
 const lowMemory = navigator.deviceMemory && navigator.deviceMemory <= 2;
 
 // site-wide ambient data-pipeline backdrop (behind all content)
+// Runs on phones too (with a lighter config inside pipeline-bg.js); still
+// skipped under reduced-motion, low memory, or no WebGL.
 const pipeCanvas = document.getElementById('pipe-bg');
-if (pipeCanvas && !reduce && bigEnough && !lowMemory && webglAvailable()) {
+if (pipeCanvas && !reduce && !lowMemory && webglAvailable()) {
   const mount = () =>
-    import('./pipeline-bg.js?v=2')
+    import('./pipeline-bg.js?v=3')
       .then(({ initPipelineBG }) => initPipelineBG(pipeCanvas))
       .catch(() => { /* WebGL/three failed - keep the static CSS grid backdrop */ });
   // wait until the browser is idle (and the intro has had a beat) so first
