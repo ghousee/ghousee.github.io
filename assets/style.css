@@ -197,7 +197,17 @@ section { padding: 80px 0; border-top: 1px solid var(--line-soft); }
 .tl-links a { font-family: var(--mono); font-size: 12.5px; color: var(--signal); display: inline-flex; align-items: center; gap: 7px; transition: opacity .2s; }
 .tl-links a:hover { opacity: .75; }
 .tl-links a svg { width: 14px; height: 14px; }
-@media (max-width: 680px){ .tl-node { flex: 1 0 165px; } }
+/* phones: stack the timeline vertically (left rail) instead of scrolling sideways */
+@media (max-width: 720px) {
+  .tl-track { flex-direction: column; overflow-x: visible; scroll-snap-type: none; padding-bottom: 0; }
+  .tl-track::before { left: 7px; right: auto; top: 16px; bottom: 16px; width: 1px; height: auto; }
+  .tl-node { flex: none; width: 100%; padding: 12px 14px 16px 34px; }
+  .tl-node::before { top: 17px; left: 2px; }
+  .tl-node:hover { transform: none; }
+  .tl-year { margin-bottom: 4px; }
+  .tl-role { font-size: 16px; }
+  .tl-detail { padding: 20px 18px; }
+}
 
 /* 3D journey stage (enhancement; flat .tl-track is the fallback) */
 .tl-stage { display: none; position: relative; height: 440px; margin-bottom: 6px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: radial-gradient(120% 100% at 50% 0%, #0d1420, #090c12); }
