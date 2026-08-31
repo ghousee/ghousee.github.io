@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Apex Mobile Media, Data Platform + Analytics App · Ghouse Mohiuddin Mohammed</title>
-<meta name="description" content="Co-op case study: an ETL/ELT platform feeding a 400M+ row Redshift warehouse, a FastAPI + React analytics app for ~60 users, and a hot/cold two-tier data architecture that cut serving-layer sync by ~99%." />
+<meta name="description" content="Co-op case study: an ETL/ELT platform feeding a 400M+ row cloud data warehouse, a FastAPI + React analytics app for ~60 users, and a hot/cold two-tier data architecture that cut serving-layer sync by ~99%." />
 
 <!-- Open Graph -->
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Apex Mobile Media, Data Platform + Analytics App" />
-<meta property="og:description" content="A 400M+ row Redshift warehouse, a FastAPI + React app for ~60 users, and a hot/cold two-tier architecture with fingerprint-based incremental sync (~99% faster) and 100-1000x query speedups." />
+<meta property="og:description" content="A 400M+ row cloud data warehouse, a FastAPI + React app for ~60 users, and a hot/cold two-tier architecture with fingerprint-based incremental sync (~99% faster) and 100-1000x query speedups." />
 <meta property="og:image" content="../assets/img/Ghouse.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 
@@ -44,10 +44,10 @@
       <span class="sep">·</span>
       <span>Jan to Aug 2026</span>
       <span class="sep">·</span>
-      <span>Python · FastAPI · React/TS · AWS · Redshift</span>
+      <span>Python · FastAPI · React/TS · SQL · AWS</span>
     </div>
     <h1 class="cs-title">Two production systems,<br/><span style="color:var(--signal)">data platform to live app</span>.</h1>
-    <p class="cs-sub">An 8-month co-op (started at four, extended to eight). I designed and built two production systems from scratch: an <b>ETL/ELT platform</b> feeding a 400M+ row Redshift warehouse, and a <b>FastAPI + React analytics app</b> serving about 60 internal users. I worked solo, consulting a senior engineer on specific infrastructure decisions.</p>
+    <p class="cs-sub">An 8-month co-op (started at four, extended to eight). I designed and built two production systems from scratch: an <b>ETL/ELT platform</b> feeding a 400M+ row cloud data warehouse, and a <b>FastAPI + React analytics app</b> serving about 60 internal users. I worked solo, consulting a senior engineer on specific infrastructure decisions.</p>
 
     <div class="status cs-metrics reveal">
       <div class="cell"><div class="k">Warehouse</div><div class="v" style="font-size:clamp(16px,2.6vw,24px)">400M<span class="u">+ rows</span></div></div>
@@ -61,8 +61,8 @@
   <section class="cs-sec">
     <div class="cs-sec-head reveal"><span class="cs-sec-num">01</span><span class="cs-sec-title">Context</span></div>
     <div class="cs-prose reveal">
-      <p>Ad-tech campaign, sales, and finance data was spread across 12+ partner sources: REST APIs, files on S3, and exports arriving as Gmail attachments, each in its own shape and schedule.</p>
-      <p>The account management team pulled partner data from email by hand, aggregated it, and built client progress, final, and wrap reports, work that took hours to days. Finance ran month-end billing off the same manual exports. There was no shared warehouse and no application on top of it. I built both.</p>
+      <p>Operational and financial data was spread across 12+ data sources: REST APIs, files in object storage, and exports arriving by email, each in its own shape and on its own schedule.</p>
+      <p>Teams pulled this data by hand, aggregated it, and built client reports, work that took hours to days. A recurring month-end process ran off the same manual exports. There was no shared warehouse and no application on top of it. I built both.</p>
     </div>
   </section>
 
@@ -71,31 +71,31 @@
     <div class="cs-sec-head reveal"><span class="cs-sec-num">02</span><span class="cs-sec-title">Data Pipeline Platform</span></div>
     <div class="cs-prose reveal" style="margin-bottom:24px;">
       <div class="cs-sys">System 1 / ETL &amp; ELT</div>
-      <p>A production platform that ingests from 12+ sources into an Amazon Redshift warehouse holding <b>400M+ rows</b> across 6 years and 54 columns, and keeps it current on unattended nightly runs.</p>
+      <p>A production platform that ingests from 12+ data sources into a cloud data warehouse holding <b>400M+ rows</b> across 6 years, and keeps it current on unattended nightly runs.</p>
     </div>
     <div class="cs-builds">
       <div class="cs-build reveal">
         <h4>A modular ingestion framework</h4>
         <p>A connector → processor → enrichment → loader pipeline with <b>fetch-first idempotency</b>, retry with backoff, and memory-safe chunked bulk loading, so nightly jobs run without a human watching them.</p>
-        <span class="result">Unattended nightly ingestion across 12+ partner sources</span>
+        <span class="result">Unattended nightly ingestion across 12+ data sources</span>
       </div>
       <div class="cs-build reveal">
         <h4>Fault-tolerant historical backfills</h4>
-        <p>Ran large backfills (34M+ rows) at per-day granularity with fault tolerance, so a failure resumes instead of restarting and API rate limits are respected.</p>
-        <span class="result">6 years of history loaded without tripping partner rate limits</span>
+        <p>Ran large backfills (34M+ rows) at per-day granularity with fault tolerance, so a failure resumes instead of restarting and source rate limits are respected.</p>
+        <span class="result">6 years of history loaded without tripping source rate limits</span>
       </div>
       <div class="cs-build reveal">
-        <h4>Nightly NetSuite ELT</h4>
-        <p>A SuiteAnalytics ODBC → Redshift job on a <b>systemd timer</b> loading 12+ raw tables, with certified SQL views validated against source exports so downstream numbers match the system of record.</p>
-        <span class="result">NetSuite financials in the warehouse, reconciled to source</span>
+        <h4>Nightly ERP integration</h4>
+        <p>An ERP system over ODBC → warehouse job on a <b>systemd timer</b> loading raw tables, with certified SQL views validated against source exports so downstream numbers match the system of record.</p>
+        <span class="result">ERP financials in the warehouse, reconciled to source</span>
       </div>
       <div class="cs-build reveal">
         <h4>Anomaly detection and observability</h4>
-        <p>A data-anomaly detection and correction framework (fix-at-source vs. override) with an <b>append-only audit ledger</b>, plus CloudWatch logging and threshold alarms. Diagnosed Redshift saturation and specified COPY-from-S3 staging and sortkey optimizations.</p>
+        <p>A data-anomaly detection and correction framework (fix-at-source vs. override) with an <b>append-only audit ledger</b>, plus cloud logging and threshold alarms. Diagnosed warehouse saturation and specified staged bulk-load and sort-key optimizations.</p>
         <span class="result">Corrections are traceable; saturation was measured, not guessed</span>
       </div>
     </div>
-    <blockquote class="cs-pull reveal">About <span class="accent">10 pipelines</span> serve account management (hours-to-days of manual work, now retrieved in seconds); <span class="accent">2</span> serve finance for month-end billing (days to hours). Controller review stays manual on purpose, since carry-forward adjustments need human judgment.</blockquote>
+    <blockquote class="cs-pull reveal">About <span class="accent">10 pipelines</span> serve the reporting teams (hours-to-days of manual work, now retrieved in seconds); a couple more feed a <span class="accent">recurring month-end process</span> (days to hours). Final review stays manual on purpose, since some adjustments need human judgment.</blockquote>
   </section>
 
   <!-- 03 SYSTEM 2 -->
@@ -103,21 +103,21 @@
     <div class="cs-sec-head reveal"><span class="cs-sec-num">03</span><span class="cs-sec-title">Full-Stack Analytics Platform</span></div>
     <div class="cs-prose reveal" style="margin-bottom:22px;">
       <div class="cs-sys">System 2 / FastAPI + React on AWS</div>
-      <p>A FastAPI and React/TypeScript application live on a public HTTPS domain for about <b>60 internal users</b>. I provisioned and secured the full cloud stack: RDS PostgreSQL, EC2 (ARM Graviton), an Application Load Balancer, ACM/TLS, S3, ECR-based Docker deployment, and DNS. Infrastructure choices like ARM64 vs. x86 were made in consultation with a senior engineer.</p>
+      <p>A FastAPI and React/TypeScript application live on a public HTTPS domain for about <b>60 internal users</b>. I provisioned and secured the full cloud stack on AWS: compute, a managed OLTP database, a load balancer, TLS, object storage, and container-based deployment. Infrastructure choices like ARM64 vs. x86 were made in consultation with a senior engineer.</p>
       <p>Authentication is <b>JWT with a 10-role RBAC</b> model, token-based account activation, and a page-permission matrix. I led end-to-end security audits (authN/Z, SQL injection, secrets, dependency CVEs, container hardening) and remediation ahead of the public launch.</p>
     </div>
     <p class="cs-sys reveal" style="margin-bottom:10px;">30+ endpoints and feature modules, including:</p>
     <ul class="cs-cols reveal">
       <li>Executive dashboards</li>
       <li>Report builder</li>
-      <li>Automated Excel + PowerPoint wrap reports</li>
+      <li>Automated Excel + PowerPoint reports</li>
       <li>Pacing tracker</li>
-      <li>Partner scorecard</li>
-      <li>Finance reconciliation</li>
-      <li>NetSuite opportunities</li>
+      <li>Data-source scorecards</li>
+      <li>Reconciliation views</li>
+      <li>Sales pipeline / opportunities</li>
       <li>Proposal / RFP generation</li>
       <li>Report-problem ticketing</li>
-      <li>Campaign recommendation (<b>LightGBM / SHAP</b>)</li>
+      <li>A recommendation model (<b>LightGBM / SHAP</b>)</li>
     </ul>
 
     <div class="cs-sec-head reveal" style="margin:40px 0 20px;"><span class="cs-sec-num">03.1</span><span class="cs-sec-title" style="font-size:clamp(18px,2.6vw,22px)">Performance work</span></div>
@@ -125,8 +125,8 @@
       <p>I drove <b>100 to 1000x</b> query speedups with materialized-view rollups and targeted indexes, and tuned database connection pooling for concurrent load.</p>
     </div>
     <div class="cs-perf reveal">
-      <div class="p"><div class="lab">Campaign pacing</div><div class="val"><span class="from">411s →</span> <span class="to">28ms</span></div></div>
-      <div class="p"><div class="lab">Partner scorecard</div><div class="val"><span class="from">34s →</span> <span class="to">6ms</span></div></div>
+      <div class="p"><div class="lab">Pacing view</div><div class="val"><span class="from">411s →</span> <span class="to">28ms</span></div></div>
+      <div class="p"><div class="lab">A scorecard</div><div class="val"><span class="from">34s →</span> <span class="to">6ms</span></div></div>
       <div class="p"><div class="lab">Report preview</div><div class="val"><span class="from">504ms →</span> <span class="to">3ms</span></div></div>
       <div class="p"><div class="lab">Dashboards</div><div class="val"><span class="from">35s →</span> <span class="to">50ms</span></div></div>
     </div>
@@ -136,14 +136,14 @@
   <section class="cs-sec" id="architecture">
     <div class="cs-sec-head reveal"><span class="cs-sec-num">04</span><span class="cs-sec-title">Hot / cold two-tier architecture</span></div>
     <div class="cs-prose reveal" style="margin-bottom:22px;">
-      <p>The app can't query a 400M+ row Redshift warehouse live, but it does need current data. So I split serving from storage. The <b>cold tier</b> is the full warehouse in Redshift. The <b>hot tier</b> is the most recent year (about <b>58M rows</b>) mirrored into PostgreSQL RDS, which serves live application queries.</p>
-      <p>The naive way to keep the hot tier fresh, a direct row-by-row Redshift to PostgreSQL transfer, benchmarked at roughly <b>1 hour per partner per month</b>, which extrapolates to about <b>24 hours</b> for a single year across 7+ partners. That was a non-starter for a nightly job.</p>
+      <p>The app can't query a 400M+ row warehouse live, but it does need current data. So I split serving from storage. The <b>cold tier</b> is the full cloud data warehouse. The <b>hot tier</b> is the most recent year (about <b>58M rows</b>) mirrored into a managed OLTP database, which serves live application queries.</p>
+      <p>The naive way to keep the hot tier fresh, a direct row-by-row warehouse-to-OLTP transfer, benchmarked at roughly <b>1 hour per data source per month</b>, which extrapolates to about <b>24 hours</b> for a single year across 7+ sources. That was a non-starter for a nightly job.</p>
     </div>
 
     <figure class="cs-figure reveal">
-      <svg viewBox="0 0 1000 350" role="img" aria-label="Sync flow: Redshift cold tier unloads to compressed Parquet in S3, partitioned by month with hash fingerprints; a fingerprint check re-pulls only changed months; DuckDB bulk loads into the PostgreSQL hot tier that serves the app.">
+      <svg viewBox="0 0 1000 350" role="img" aria-label="Sync flow: the cold-tier data warehouse unloads to compressed columnar files in object storage, partitioned by month with hash fingerprints; a fingerprint check re-pulls only changed months; a columnar bulk load writes into the OLTP hot tier that serves the app.">
         <text class="dg-stage" x="20"  y="24">Cold tier</text>
-        <text class="dg-stage" x="300" y="24">Stage (S3)</text>
+        <text class="dg-stage" x="300" y="24">Stage</text>
         <text class="dg-stage" x="600" y="24">Load</text>
         <text class="dg-stage" x="800" y="24">Hot tier</text>
 
@@ -151,7 +151,7 @@
         <path class="dg-edge-live" d="M210 205 H 288" />
         <path class="dg-edge-live" d="M500 205 H 578" />
         <path class="dg-edge-live" d="M730 205 H 798" />
-        <!-- fingerprint control edge (dashed feel via faint) -->
+        <!-- fingerprint control edges -->
         <path class="dg-edge" d="M395 96 V 160" />
         <path class="dg-edge" d="M300 96 H 210 V 160" />
 
@@ -160,44 +160,44 @@
         <text class="dg-label" x="316" y="76">Fingerprint check</text>
         <text class="dg-sub" x="316" y="91">re-pull changed months only</text>
 
-        <!-- Redshift cold -->
+        <!-- cold: warehouse -->
         <rect class="dg-node-core" x="20" y="160" width="190" height="92" rx="11"/>
-        <text class="dg-label" x="38" y="192">Redshift</text>
+        <text class="dg-label" x="38" y="192">Data warehouse</text>
         <text class="dg-sub" x="38" y="210">cold tier</text>
         <text class="dg-sub" x="38" y="226">400M+ rows · 6 yrs</text>
-        <text class="dg-sub" x="38" y="242">UNLOAD → Parquet</text>
+        <text class="dg-sub" x="38" y="242">unload → columnar</text>
 
-        <!-- S3 parquet -->
+        <!-- stage: object storage -->
         <rect class="dg-node-core" x="288" y="160" width="212" height="92" rx="11"/>
-        <text class="dg-label" x="306" y="192">S3 / Parquet</text>
+        <text class="dg-label" x="306" y="192">Object storage</text>
         <text class="dg-sub" x="306" y="210">monthly partitions</text>
         <text class="dg-sub" x="306" y="226">compressed columnar</text>
         <text class="dg-sub" x="306" y="242">hash fingerprint / month</text>
 
-        <!-- DuckDB -->
+        <!-- load: bulk loader -->
         <rect class="dg-node" x="578" y="168" width="152" height="76" rx="11"/>
-        <text class="dg-label" x="596" y="200">DuckDB</text>
+        <text class="dg-label" x="596" y="200">Columnar load</text>
         <text class="dg-sub" x="596" y="218">parallel bulk load</text>
         <text class="dg-sub" x="596" y="234">atomic partition swap</text>
 
-        <!-- Postgres hot -->
+        <!-- hot: OLTP -->
         <rect class="dg-node-core" x="798" y="160" width="182" height="92" rx="11"/>
-        <text class="dg-label" x="816" y="192">PostgreSQL</text>
-        <text class="dg-sub" x="816" y="210">hot tier · RDS</text>
+        <text class="dg-label" x="816" y="192">OLTP database</text>
+        <text class="dg-sub" x="816" y="210">hot tier · managed</text>
         <text class="dg-sub" x="816" y="226">~58M rows · 1 yr</text>
         <text class="dg-sub" x="816" y="242">serves the app</text>
       </svg>
-      <figcaption class="cs-figcap">Nightly sync: Redshift UNLOAD → compressed Parquet in S3 (partitioned by month, fingerprinted) → DuckDB bulk load → PostgreSQL. Only months whose fingerprint changed are re-pulled.</figcaption>
+      <figcaption class="cs-figcap">Nightly sync: warehouse unload → compressed columnar files in object storage (partitioned by month, fingerprinted) → parallel bulk load → OLTP database. Only months whose fingerprint changed are re-pulled.</figcaption>
     </figure>
 
     <div class="cs-prose reveal" style="margin-top:26px;">
-      <p>Instead of row-by-row inserts, I built <b>Redshift UNLOAD → compressed Parquet in S3 → DuckDB bulk load into PostgreSQL</b>, replacing millions of individual inserts with a parallelized columnar export and load.</p>
-      <p>On top of that I added <b>incremental sync by content fingerprinting</b>. Data is partitioned by month in S3, and each monthly partition carries a hash fingerprint. Each nightly run compares fingerprints and re-pulls only the months whose data actually changed, swapping partitions atomically and dropping stale data. Fingerprinting takes about 10 seconds per month and a full month re-pull about 50 to 60 seconds, so the worst case (all 12 months changed) is under 15 minutes and a typical night is under 5, against the ~24 hour baseline. That is roughly a <b>99% reduction</b>.</p>
+      <p>Instead of row-by-row inserts, I built <b>warehouse unload → compressed columnar files in object storage → parallel bulk load into the OLTP database</b>, replacing millions of individual inserts with a parallelized columnar export and load.</p>
+      <p>On top of that I added <b>incremental sync by content fingerprinting</b>. Data is partitioned by month in object storage, and each monthly partition carries a hash fingerprint. Each nightly run compares fingerprints and re-pulls only the months whose data actually changed, swapping partitions atomically and dropping stale data. Fingerprinting takes about 10 seconds per month and a full month re-pull about 50 to 60 seconds, so the worst case (all 12 months changed) is under 15 minutes and a typical night is under 5, against the ~24 hour baseline. That is roughly a <b>99% reduction</b>.</p>
     </div>
     <blockquote class="cs-pull reveal">Monthly granularity was a deliberate choice, matched to how the data actually mutates.</blockquote>
     <div class="cs-prose reveal">
-      <p>Partners restate recent figures (impressions get revised days later from timezone lag or partner-side outages), which I handle upstream with a rolling 30-day re-pull into Redshift. After about 30 days the data is effectively immutable, so only the most recent month or two ever have changed fingerprints.</p>
-      <p>Fingerprints also catch <b>my own corrections</b>, like fixing mislabeled campaign names surfaced by anomaly detection, which can touch any month. That makes the serving layer self-healing regardless of where or why the data changed.</p>
+      <p>Data sources restate recent figures (metrics get revised days later from timezone lag or source-side outages), which I handle upstream with a rolling 30-day re-pull into the warehouse. After about 30 days the data is effectively immutable, so only the most recent month or two ever have changed fingerprints.</p>
+      <p>Fingerprints also catch <b>my own corrections</b>, like fixing mislabeled records surfaced by anomaly detection, which can touch any month. That makes the serving layer self-healing regardless of where or why the data changed.</p>
     </div>
   </section>
 
@@ -205,11 +205,11 @@
   <section class="cs-sec">
     <div class="cs-sec-head reveal"><span class="cs-sec-num">05</span><span class="cs-sec-title">Impact</span></div>
     <div class="cs-prose reveal">
-      <p>Account management retrieves partner reports on demand in seconds instead of assembling them by hand over hours to days. Finance month-end billing prep dropped from days to hours. The serving layer stays current on a nightly job that runs in minutes, and the whole stack runs in production for about 60 users.</p>
+      <p>The reporting teams retrieve their data on demand in seconds instead of assembling it by hand over hours to days. The recurring month-end process dropped from days to hours. The serving layer stays current on a nightly job that runs in minutes, and the whole stack runs in production for about 60 users.</p>
       <p>The work was valued enough that my <b>4-month co-op was extended to eight</b>.</p>
     </div>
     <div class="stack reveal" style="margin-top:24px;">
-      <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">PostgreSQL</span><span class="chip">Amazon Redshift</span><span class="chip">SQLAlchemy</span><span class="chip">DuckDB</span><span class="chip">Parquet</span><span class="chip">Docker</span><span class="chip">AWS EC2 / RDS / ALB / S3 / ECR</span><span class="chip">CloudWatch</span><span class="chip">IAM / ACM</span><span class="chip">LightGBM / SHAP</span><span class="chip">NetSuite ODBC</span><span class="chip">Gmail / Drive APIs</span><span class="chip">systemd / Linux</span><span class="chip">CI/CD</span><span class="chip">Jira / Confluence</span>
+      <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">SQL</span><span class="chip">Cloud Data Warehouse (MPP)</span><span class="chip">OLTP Database</span><span class="chip">SQLAlchemy</span><span class="chip">Columnar Files / Bulk Load</span><span class="chip">Docker</span><span class="chip">AWS</span><span class="chip">Cloud Logging / Alarms</span><span class="chip">IAM / TLS</span><span class="chip">LightGBM / SHAP</span><span class="chip">ERP (ODBC)</span><span class="chip">Email / File Ingestion</span><span class="chip">systemd / Linux</span><span class="chip">CI/CD</span><span class="chip">Jira / Confluence</span>
     </div>
   </section>
 
