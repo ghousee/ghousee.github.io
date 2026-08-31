@@ -53,7 +53,7 @@
       <div class="cell"><div class="k">Warehouse</div><div class="v" style="font-size:clamp(16px,2.6vw,24px)">400M<span class="u">+ rows</span></div></div>
       <div class="cell"><div class="k">Serving sync</div><div class="v">−99<span class="u">%</span></div></div>
       <div class="cell"><div class="k">Query gains</div><div class="v" style="font-size:clamp(16px,2.6vw,24px)">100-1000<span class="u">×</span></div></div>
-      <div class="cell"><div class="k">Data sources</div><div class="v">12<span class="u">+</span></div></div>
+      <div class="cell"><div class="k">Reporting</div><div class="v" style="font-size:clamp(15px,2.4vw,20px)">days→<span class="u">sec</span></div></div>
     </div>
   </header>
 
@@ -61,7 +61,7 @@
   <section class="cs-sec">
     <div class="cs-sec-head reveal"><span class="cs-sec-num">01</span><span class="cs-sec-title">Context</span></div>
     <div class="cs-prose reveal">
-      <p>Operational and financial data was spread across 12+ data sources: REST APIs, files in object storage, and exports arriving by email, each in its own shape and on its own schedule.</p>
+      <p>Operational and financial data was spread across multiple sources: REST APIs, files in object storage, and exports arriving by email, each in its own shape and on its own schedule.</p>
       <p>Teams pulled this data by hand, aggregated it, and built client reports, work that took hours to days. A recurring month-end process ran off the same manual exports. There was no shared warehouse and no application on top of it. I built both.</p>
     </div>
   </section>
@@ -71,13 +71,13 @@
     <div class="cs-sec-head reveal"><span class="cs-sec-num">02</span><span class="cs-sec-title">Data Pipeline Platform</span></div>
     <div class="cs-prose reveal" style="margin-bottom:24px;">
       <div class="cs-sys">System 1 / ETL &amp; ELT</div>
-      <p>A production platform that ingests from 12+ data sources into a cloud data warehouse holding <b>400M+ rows</b> across 6 years, and keeps it current on unattended nightly runs.</p>
+      <p>A production platform that ingests from multiple sources into a cloud data warehouse holding <b>400M+ rows</b> across 6 years, and keeps it current on unattended nightly runs.</p>
     </div>
     <div class="cs-builds">
       <div class="cs-build reveal">
         <h4>A modular ingestion framework</h4>
         <p>A connector → processor → enrichment → loader pipeline with <b>fetch-first idempotency</b>, retry with backoff, and memory-safe chunked bulk loading, so nightly jobs run without a human watching them.</p>
-        <span class="result">Unattended nightly ingestion across 12+ data sources</span>
+        <span class="result">Unattended nightly ingestion across multiple sources</span>
       </div>
       <div class="cs-build reveal">
         <h4>Fault-tolerant historical backfills</h4>
@@ -191,7 +191,7 @@
     </figure>
 
     <div class="cs-prose reveal" style="margin-top:26px;">
-      <p>Instead of row-by-row inserts, I built <b>warehouse unload → compressed columnar files in object storage → parallel bulk load into the OLTP database</b>, replacing millions of individual inserts with a parallelized columnar export and load.</p>
+      <p>The fix was bulk, not row-by-row: a <b>parallelized columnar export and load</b> in place of millions of individual inserts.</p>
       <p>On top of that I added <b>incremental sync by content fingerprinting</b>. Data is partitioned by month in object storage, and each monthly partition carries a hash fingerprint. Each nightly run compares fingerprints and re-pulls only the months whose data actually changed, swapping partitions atomically and dropping stale data. Fingerprinting takes about 10 seconds per month and a full month re-pull about 50 to 60 seconds, so the worst case (all 12 months changed) is under 15 minutes and a typical night is under 5, against the ~24 hour baseline. That is roughly a <b>99% reduction</b>.</p>
     </div>
     <blockquote class="cs-pull reveal">Monthly granularity was a deliberate choice, matched to how the data actually mutates.</blockquote>
@@ -205,7 +205,7 @@
   <section class="cs-sec">
     <div class="cs-sec-head reveal"><span class="cs-sec-num">05</span><span class="cs-sec-title">Impact</span></div>
     <div class="cs-prose reveal">
-      <p>The reporting teams retrieve their data on demand in seconds instead of assembling it by hand over hours to days. The recurring month-end process dropped from days to hours. The serving layer stays current on a nightly job that runs in minutes, and the whole stack runs in production for internal teams.</p>
+      <p>Reporting that took hours to days now returns in seconds, the month-end process dropped from days to hours, and the serving layer stays current on a nightly job that runs in minutes.</p>
       <p>The work was valued enough that my <b>4-month co-op was extended to eight</b>.</p>
     </div>
     <div class="stack reveal" style="margin-top:24px;">
