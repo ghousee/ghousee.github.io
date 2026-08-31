@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Apex Mobile Media, Data Platform + Analytics App · Ghouse Mohiuddin Mohammed</title>
-<meta name="description" content="Co-op case study: an ETL/ELT platform feeding a 400M+ row cloud data warehouse, a FastAPI + React analytics app for ~60 users, and a hot/cold two-tier data architecture that cut serving-layer sync by ~99%." />
+<meta name="description" content="Co-op case study: an ETL/ELT platform feeding a 400M+ row cloud data warehouse, a FastAPI + React analytics app, and a hot/cold two-tier data architecture that cut serving-layer sync by ~99%." />
 
 <!-- Open Graph -->
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Apex Mobile Media, Data Platform + Analytics App" />
-<meta property="og:description" content="A 400M+ row cloud data warehouse, a FastAPI + React app for ~60 users, and a hot/cold two-tier architecture with fingerprint-based incremental sync (~99% faster) and 100-1000x query speedups." />
+<meta property="og:description" content="A 400M+ row cloud data warehouse, a FastAPI + React app, and a hot/cold two-tier architecture with fingerprint-based incremental sync (~99% faster) and 100-1000x query speedups." />
 <meta property="og:image" content="../assets/img/Ghouse.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 
@@ -47,13 +47,13 @@
       <span>Python · FastAPI · React/TS · SQL · AWS</span>
     </div>
     <h1 class="cs-title">Two production systems,<br/><span style="color:var(--signal)">data platform to live app</span>.</h1>
-    <p class="cs-sub">An 8-month co-op (started at four, extended to eight). I designed and built two production systems from scratch: an <b>ETL/ELT platform</b> feeding a 400M+ row cloud data warehouse, and a <b>FastAPI + React analytics app</b> serving about 60 internal users. I worked solo, consulting a senior engineer on specific infrastructure decisions.</p>
+    <p class="cs-sub">An 8-month co-op (started at four, extended to eight). I designed and built two production systems from scratch: an <b>ETL/ELT platform</b> feeding a 400M+ row cloud data warehouse, and a <b>FastAPI + React analytics app</b>. I worked solo, consulting a senior engineer on specific infrastructure decisions.</p>
 
     <div class="status cs-metrics reveal">
       <div class="cell"><div class="k">Warehouse</div><div class="v" style="font-size:clamp(16px,2.6vw,24px)">400M<span class="u">+ rows</span></div></div>
       <div class="cell"><div class="k">Serving sync</div><div class="v">−99<span class="u">%</span></div></div>
       <div class="cell"><div class="k">Query gains</div><div class="v" style="font-size:clamp(16px,2.6vw,24px)">100-1000<span class="u">×</span></div></div>
-      <div class="cell"><div class="k">App users</div><div class="v">~60</div></div>
+      <div class="cell"><div class="k">Data sources</div><div class="v">12<span class="u">+</span></div></div>
     </div>
   </header>
 
@@ -95,7 +95,7 @@
         <span class="result">Corrections are traceable; saturation was measured, not guessed</span>
       </div>
     </div>
-    <blockquote class="cs-pull reveal">About <span class="accent">10 pipelines</span> serve the reporting teams (hours-to-days of manual work, now retrieved in seconds); a couple more feed a <span class="accent">recurring month-end process</span> (days to hours). Final review stays manual on purpose, since some adjustments need human judgment.</blockquote>
+    <blockquote class="cs-pull reveal"><span class="accent">Over a dozen pipelines</span> serve the reporting teams (hours-to-days of manual work, now retrieved in seconds); a few more feed a <span class="accent">recurring month-end process</span> (days to hours). Final review stays manual on purpose, since some adjustments need human judgment.</blockquote>
   </section>
 
   <!-- 03 SYSTEM 2 -->
@@ -103,7 +103,7 @@
     <div class="cs-sec-head reveal"><span class="cs-sec-num">03</span><span class="cs-sec-title">Full-Stack Analytics Platform</span></div>
     <div class="cs-prose reveal" style="margin-bottom:22px;">
       <div class="cs-sys">System 2 / FastAPI + React on AWS</div>
-      <p>A FastAPI and React/TypeScript application live on a public HTTPS domain for about <b>60 internal users</b>. I provisioned and secured the full cloud stack on AWS: compute, a managed OLTP database, a load balancer, TLS, object storage, and container-based deployment. Infrastructure choices like ARM64 vs. x86 were made in consultation with a senior engineer.</p>
+      <p>A FastAPI and React/TypeScript application live on a public HTTPS domain for internal teams. I provisioned and secured the full cloud stack on AWS: compute, a managed OLTP database, a load balancer, TLS, object storage, and container-based deployment. Infrastructure choices like ARM64 vs. x86 were made in consultation with a senior engineer.</p>
       <p>Authentication is <b>JWT with a 10-role RBAC</b> model, token-based account activation, and a page-permission matrix. I led end-to-end security audits (authN/Z, SQL injection, secrets, dependency CVEs, container hardening) and remediation ahead of the public launch.</p>
     </div>
     <p class="cs-sys reveal" style="margin-bottom:10px;">30+ endpoints and feature modules, including:</p>
@@ -205,7 +205,7 @@
   <section class="cs-sec">
     <div class="cs-sec-head reveal"><span class="cs-sec-num">05</span><span class="cs-sec-title">Impact</span></div>
     <div class="cs-prose reveal">
-      <p>The reporting teams retrieve their data on demand in seconds instead of assembling it by hand over hours to days. The recurring month-end process dropped from days to hours. The serving layer stays current on a nightly job that runs in minutes, and the whole stack runs in production for about 60 users.</p>
+      <p>The reporting teams retrieve their data on demand in seconds instead of assembling it by hand over hours to days. The recurring month-end process dropped from days to hours. The serving layer stays current on a nightly job that runs in minutes, and the whole stack runs in production for internal teams.</p>
       <p>The work was valued enough that my <b>4-month co-op was extended to eight</b>.</p>
     </div>
     <div class="stack reveal" style="margin-top:24px;">
