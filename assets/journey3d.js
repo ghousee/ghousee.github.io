@@ -45,7 +45,7 @@ export function initJourney3D(tl) {
   camera.position.set(0, 0, 10);
 
   // ---- node positions along a gentle 3D path ----
-  const spanX = Math.min(4.9, 1.65 * (N - 1));
+  const spanX = Math.min(7, 1.55 * (N - 1));
   const pts = data.map((d, i) => {
     const t = N > 1 ? i / (N - 1) : 0.5;
     return new THREE.Vector3(
@@ -187,7 +187,8 @@ export function initJourney3D(tl) {
     for (let i = 0; i < N; i++) {
       _v.copy(nodes[i].position); _v.project(camera);
       const x = (_v.x * 0.5 + 0.5) * width;
-      const y = (-_v.y * 0.5 + 0.5) * height + 60;
+      // stagger neighbours vertically so labels never collide side to side
+      const y = (-_v.y * 0.5 + 0.5) * height + (i % 2 ? 104 : 54);
       labels[i].style.transform = `translate(-50%,-50%) translate(${x}px, ${y}px)`;
       labels[i].style.opacity = _v.z < 1 ? '' : '0';
     }
@@ -198,7 +199,12 @@ export function initJourney3D(tl) {
   function resize() {
     width = stage.clientWidth || width; height = stage.clientHeight || height;
     if (!width || !height) return;
-    camera.aspect = width / height; camera.updateProjectionMatrix();
+    camera.aspect = width / height;
+    // pull the camera back just enough that every node + label fits the width,
+    // whatever the node count or screen size
+    const halfTan = Math.tan((camera.fov * Math.PI / 180) / 2);
+    camera.position.z = Math.max(9, (spanX + 1.8) / (halfTan * camera.aspect));
+    camera.updateProjectionMatrix();
     renderer.setSize(width, height, false);
   }
   window.addEventListener('resize', resize);
