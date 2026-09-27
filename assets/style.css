@@ -164,7 +164,7 @@ section { padding: 80px 0; border-top: 1px solid var(--line-soft); }
 .photo-img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center 20%; }
 
 /* lean hero avatar (replaces the full About section) */
-.hero-avatar { width: 66px; height: 66px; border-radius: 50%; object-fit: cover; object-position: center 18%; border: 1px solid var(--line); margin-bottom: 22px; display: block; }
+.hero-avatar { width: 116px; height: 116px; border-radius: 50%; object-fit: cover; object-position: center 18%; border: 1px solid var(--line); margin-bottom: 24px; display: block; }
 .skills-one { border: 1px solid var(--line); border-radius: 12px; padding: 24px; background: var(--bg-soft); }
 .skills-one .tag-cloud span { font-size: 13px; padding: 6px 12px; }
 .skills-ai { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line-soft); }
