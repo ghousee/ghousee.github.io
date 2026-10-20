@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/style.css?v=11" />
+<link rel="stylesheet" href="assets/style.css?v=12" />
 </head>
 <body>
 
@@ -93,8 +93,16 @@
         <span class="card-link cs">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </a>
 
+      <a class="card feature reveal" href="work/synapse.html">
+        <div class="card-top"><span class="card-id">CASE_02</span><span class="card-lang"><span class="sq"></span>AI · RAG · Runner-up</span></div>
+        <h3>Synapse, Catalyst 2026 Runner-up</h3>
+        <p>2nd place at the Catalyst 2026 hackathon. An on-prem AI ops assistant for HPE NonStop that cites the manual and the senior expert behind every answer: 0 context leaks, held against a live prompt-injection attempt.</p>
+        <div class="card-tags"><span>FastAPI</span><span>pgvector</span><span>Next.js</span><span>Ollama</span></div>
+        <span class="card-link cs">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+
       <a class="card feature reveal" href="work/asl-translator.html">
-        <div class="card-top"><span class="card-id">CASE_02</span><span class="card-lang"><span class="sq"></span>ML · CV · APIs</span></div>
+        <div class="card-top"><span class="card-id">CASE_03</span><span class="card-lang"><span class="sq"></span>ML · CV · APIs</span></div>
         <h3>ASL &amp; Speech Translator</h3>
         <p>Real-time ASL sign recognition (CNN + OpenCV) plus speech-to-translated-speech across 100+ languages via Google APIs.</p>
         <div class="card-tags"><span>Keras</span><span>OpenCV</span><span>Google APIs</span><span>Python</span></div>
@@ -102,7 +110,7 @@
       </a>
 
       <a class="card feature reveal" href="work/payroll-system.html">
-        <div class="card-top"><span class="card-id">CASE_03</span><span class="card-lang"><span class="sq"></span>C# · MySQL</span></div>
+        <div class="card-top"><span class="card-id">CASE_04</span><span class="card-lang"><span class="sq"></span>C# · MySQL</span></div>
         <h3>Payroll Management System</h3>
         <p>A complete C#/.NET + MySQL payroll app: authentication, employee CRUD, salary calculation, and Crystal Reports payslips.</p>
         <div class="card-tags"><span>C#</span><span>.NET</span><span>MySQL</span><span>Crystal Reports</span></div>
@@ -110,7 +118,7 @@
       </a>
 
       <a class="card feature reveal" href="work/flight-refund-rag.html">
-        <div class="card-top"><span class="card-id">CASE_04</span><span class="card-lang"><span class="sq"></span>RAG · LLM</span></div>
+        <div class="card-top"><span class="card-id">CASE_05</span><span class="card-lang"><span class="sq"></span>RAG · LLM</span></div>
         <h3>Flight Refund RAG</h3>
         <p>A local, citation-grounded RAG over refund policy. Four retrievers benchmarked on a golden set (recall@5, MRR, refusals), with cross-encoder reranking the clear winner.</p>
         <div class="card-tags"><span>LangChain</span><span>pgvector</span><span>Ollama</span><span>Python</span></div>
@@ -159,6 +167,11 @@
           <span class="tl-year">Sep 2026 to Present</span>
           <span class="tl-role">Teaching Assistant <span class="tl-cur">CURRENT</span></span>
           <span class="tl-org">Northeastern University · Toronto</span>
+        </button>
+        <button class="tl-node" role="tab" aria-controls="tl-synapse" data-target="tl-synapse">
+          <span class="tl-year">2026</span>
+          <span class="tl-role">Catalyst 2026 Hackathon</span>
+          <span class="tl-org">Runner-up · CAIL challenge</span>
         </button>
       </div>
 
@@ -215,6 +228,18 @@
             <li>INFO 6205 <b>Program Structures &amp; Algorithms</b>, DAMG 6105 <b>Data Science Engineering Methods</b> (Python), and DAMG 7370 <b>Designing Data Architecture for BI</b>.</li>
           </ul>
           <div class="stack"><span class="chip">Algorithms</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Data Engineering</span><span class="chip">Data Architecture</span><span class="chip">Mentoring</span></div>
+        </div>
+
+        <div class="tl-content" id="tl-synapse" role="tabpanel">
+          <ul>
+            <li>Placed <b>runner-up (2nd)</b> with Synapse, an on-prem AI ops assistant for HPE NonStop that preserves senior engineers' judgment for junior operators.</li>
+            <li>Every answer cites the <b>manual section and the senior expert</b> it draws on, strictly scoped to the operator's node; <b>0 context leaks</b> on our 60-question eval and it held against a judge's live prompt-injection attempt.</li>
+          </ul>
+          <div class="stack"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL + pgvector</span><span class="chip">Next.js</span><span class="chip">Ollama</span><span class="chip">RAG</span></div>
+          <div class="tl-links">
+            <a href="work/synapse.html">Read the Synapse case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href="work/synapse.html#architecture">View the system design <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Synapse, Catalyst 2026 Runner-up · Ghouse Mohiuddin Mohammed</title>
+<meta name="description" content="Synapse: an on-prem AI operations assistant for HPE NonStop that preserves senior engineers' judgment and helps junior IT operators. Runner-up (2nd place) at the Catalyst 2026 hackathon, CAIL challenge." />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Synapse, Catalyst 2026 Runner-up" />
+<meta property="og:description" content="An on-prem AI ops assistant for mission-critical systems. Every answer cites the manual section and the senior expert behind it. 0 context leaks, held against a live prompt-injection attempt." />
+<meta property="og:image" content="../assets/img/Ghouse.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/style.css?v=12" />
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html"><span class="dot"></span>ghouse.dev</a>
+    <div class="nav-links">
+      <a href="../index.html#work"><span class="idx">←</span>All work</a>
+      <a href="../index.html#contact"><span class="idx">04</span>Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <a class="cs-back" href="../index.html#work">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to all work
+  </a>
+
+  <!-- HERO -->
+  <header class="cs-hero">
+    <div class="cs-eyebrow">
+      <span>Catalyst 2026 hackathon</span>
+      <span class="sep">·</span>
+      <span>CAIL challenge · Team #31</span>
+      <span class="award">RUNNER-UP · 2ND PLACE</span>
+    </div>
+    <h1 class="cs-title">Synapse: keep the judgment,<br/><span style="color:var(--signal)">not just the manuals</span>.</h1>
+    <p class="cs-sub">An AI operations assistant that keeps senior engineers' knowledge and helps junior IT operators run mission-critical systems. Every answer cites both the <b>exact manual section</b> and the <b>named senior expert</b> it draws on, and it all runs <b>fully on-prem</b>.</p>
+
+    <div class="status cs-metrics reveal">
+      <div class="cell"><div class="k">Placement</div><div class="v">2<span class="u">nd</span></div></div>
+      <div class="cell"><div class="k">Knowledge graph</div><div class="v" style="font-size:clamp(16px,2.6vw,24px)">1,700<span class="u">+ nodes</span></div></div>
+      <div class="cell"><div class="k">Context leaks</div><div class="v">0</div></div>
+      <div class="cell"><div class="k">Unit tests</div><div class="v">191</div></div>
+    </div>
+    <p class="cs-note">Code available on request.</p>
+  </header>
+
+  <!-- 01 PROBLEM -->
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">01</span><span class="cs-sec-title">The problem</span></div>
+    <div class="cs-prose reveal">
+      <p>CAIL makes connectivity and terminal-access software for mission-critical systems, including <b>HPE NonStop</b>: the fault-tolerant platform behind many bank ATMs, card payments and telecom systems. Their challenge: use AI to help the next generation of operators understand, monitor and troubleshoot these systems in natural language, while preserving the expertise of experienced professionals.</p>
+      <p>At one bank, <b>5 of 20 senior operators retired within six months</b>. The manuals exist, but the practical judgment ("never do X first at quarter-end") is in nobody's PDF.</p>
+      <p>CAIL's top concern was <b>context</b>. In their words: "System A and B have the same buttons." The same command can be right on the production node (\PROD) and wrong on the disaster-recovery node (\DR).</p>
+    </div>
+    <blockquote class="cs-pull reveal">The hard part isn't answering questions. It's answering them <span class="accent">for the right system</span>, with the senior's judgment attached.</blockquote>
+  </section>
+
+  <!-- 02 WHAT IT DOES -->
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">02</span><span class="cs-sec-title">What it does</span></div>
+    <div class="cs-builds two">
+      <div class="cs-build reveal">
+        <h4>AI Assistant</h4>
+        <p>Ask in plain English. Every answer cites the manual section <b>and</b> the senior expert ("Veteran") whose knowledge it uses, says when the sources don't cover a question, and is strictly scoped to the node, release and subsystem you're on.</p>
+      </div>
+      <div class="cs-build reveal">
+        <h4>A knowledge graph that builds itself</h4>
+        <p><b>1,700+ nodes, 3,500+ links.</b> Commands and messages are extracted from the manuals, signed notes auto-link to what they mention, and juniors' questions and passed checks create "learned from" and "knows" links, so you can watch knowledge flow from Veteran to junior.</p>
+      </div>
+      <div class="cs-build reveal">
+        <h4>Knowledge capture</h4>
+        <p>Seniors teach by talking in a "Teach" chat. The AI drafts a structured note (<b>when / do / why / when not</b>), and only the owner can sign it. Unsigned knowledge is never used.</p>
+      </div>
+      <div class="cs-build reveal">
+        <h4>Training juniors</h4>
+        <p>A per-person <b>learning map</b> (seen vs. self-rated vs. demonstrated), knowledge checks graded against the senior's own notes, and a guided training sandbox that records nothing.</p>
+      </div>
+      <div class="cs-build reveal">
+        <h4>Early warnings</h4>
+        <p>A rule-based watcher fires a named senior's warning pattern before a failure (e.g. "about 20 minutes before Pathway stops serving ATMs" after a CPU failure), with High/Medium/Low priority and a plain-English reason. Connectors read alarms from <b>IR Prognosis</b> (REST) and <b>BlackWood MOMI</b> (exports); fix steps come from the graph.</p>
+      </div>
+      <div class="cs-build reveal">
+        <h4>Safe commands</h4>
+        <p>Proposed from a verified catalog, risk-labelled and dry-run on a simulator. Only a senior can approve; critical commands need a <b>second approver</b>. Simulation only.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 SYSTEM DESIGN -->
+  <section class="cs-sec" id="architecture">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">03</span><span class="cs-sec-title">System design</span></div>
+    <div class="cs-prose reveal" style="margin-bottom:24px;">
+      <p>Three kinds of source feed one database. The graph, vectors, notes, people and learning logs all live in <b>PostgreSQL 16 + pgvector</b>, and four services sit on top of it behind a single operator console.</p>
+    </div>
+    <figure class="cs-figure reveal">
+      <svg viewBox="0 0 1040 350" role="img" aria-label="Sources (NonStop manuals, senior experts, monitoring alarms) flow through ingest and connectors into Synapse, a PostgreSQL plus pgvector database, which serves four services: assistant, watcher, learning and commands, all behind a Next.js operator console.">
+        <text class="dg-stage" x="16"  y="24">Sources</text>
+        <text class="dg-stage" x="236" y="24">Ingest</text>
+        <text class="dg-stage" x="446" y="24">Synapse</text>
+        <text class="dg-stage" x="676" y="24">Services</text>
+        <text class="dg-stage" x="886" y="24">Console</text>
+
+        <!-- edges -->
+        <path class="dg-edge" d="M196 92 C 216 92, 216 128, 236 128" />
+        <path class="dg-edge" d="M196 182 C 216 182, 216 142, 236 142" />
+        <path class="dg-edge" d="M196 272 C 216 272, 216 252, 236 252" />
+        <path class="dg-edge-live" d="M406 135 C 426 135, 426 170, 446 170" />
+        <path class="dg-edge-live" d="M406 252 C 426 252, 426 225, 446 225" />
+        <path class="dg-edge-live" d="M636 195 C 656 195, 656 78, 676 78" />
+        <path class="dg-edge-live" d="M636 195 C 656 195, 656 153, 676 153" />
+        <path class="dg-edge-live" d="M636 195 C 656 195, 656 228, 676 228" />
+        <path class="dg-edge-live" d="M636 195 C 656 195, 656 303, 676 303" />
+        <path class="dg-edge" d="M846 78  C 866 78,  866 185, 886 185" />
+        <path class="dg-edge" d="M846 153 C 866 153, 866 190, 886 190" />
+        <path class="dg-edge" d="M846 228 C 866 228, 866 200, 886 200" />
+        <path class="dg-edge" d="M846 303 C 866 303, 866 205, 886 205" />
+
+        <!-- sources -->
+        <rect class="dg-node" x="16" y="70" width="180" height="46" rx="10"/><text class="dg-label" x="32" y="91">NonStop manuals</text><text class="dg-sub" x="32" y="106">7 manuals · 3,777 sections</text>
+        <rect class="dg-node" x="16" y="160" width="180" height="46" rx="10"/><text class="dg-label" x="32" y="181">Senior experts</text><text class="dg-sub" x="32" y="196">Teach chat · sign-off</text>
+        <rect class="dg-node" x="16" y="250" width="180" height="46" rx="10"/><text class="dg-label" x="32" y="271">Monitoring</text><text class="dg-sub" x="32" y="286">Prognosis · MOMI alarms</text>
+
+        <!-- ingest -->
+        <rect class="dg-node" x="236" y="100" width="170" height="70" rx="11"/><text class="dg-label" x="252" y="124">Ingest</text><text class="dg-sub" x="252" y="142">sections · embeddings</text><text class="dg-sub" x="252" y="157">command extraction</text>
+        <rect class="dg-node" x="236" y="222" width="170" height="60" rx="11"/><text class="dg-label" x="252" y="246">Connectors</text><text class="dg-sub" x="252" y="264">alarm → node → entity</text>
+
+        <!-- core -->
+        <rect class="dg-node-core" x="446" y="110" width="190" height="170" rx="12"/>
+        <text class="dg-label" x="464" y="140">Synapse</text>
+        <text class="dg-sub" x="464" y="160">PostgreSQL 16 + pgvector</text>
+        <text class="dg-sub" x="464" y="190">▸ knowledge graph</text>
+        <text class="dg-sub" x="464" y="208">▸ vectors</text>
+        <text class="dg-sub" x="464" y="226">▸ notes · people</text>
+        <text class="dg-sub" x="464" y="244">▸ learning logs</text>
+
+        <!-- services -->
+        <rect class="dg-node" x="676" y="50"  width="170" height="56" rx="10"/><text class="dg-label" x="692" y="74">Assistant (RAG)</text><text class="dg-sub" x="692" y="91">cited answers</text>
+        <rect class="dg-node" x="676" y="125" width="170" height="56" rx="10"/><text class="dg-label" x="692" y="149">Watcher</text><text class="dg-sub" x="692" y="166">rules + priority</text>
+        <rect class="dg-node" x="676" y="200" width="170" height="56" rx="10"/><text class="dg-label" x="692" y="224">Learning</text><text class="dg-sub" x="692" y="241">maps · checks · sandbox</text>
+        <rect class="dg-node" x="676" y="275" width="170" height="56" rx="10"/><text class="dg-label" x="692" y="299">Commands</text><text class="dg-sub" x="692" y="316">catalog · approval · sim</text>
+
+        <!-- console -->
+        <rect class="dg-node-core" x="886" y="150" width="140" height="90" rx="11"/><text class="dg-label" x="902" y="186">Operator</text><text class="dg-label" x="902" y="203">console</text><text class="dg-sub" x="902" y="222">Next.js</text>
+      </svg>
+      <figcaption class="cs-figcap">Manuals, signed expert notes and live alarms land in one database; four services serve one operator console.</figcaption>
+    </figure>
+
+    <div class="cs-sec-head reveal" style="margin:44px 0 20px;"><span class="cs-sec-num">03.1</span><span class="cs-sec-title" style="font-size:clamp(18px,2.6vw,22px)">How an answer is made</span></div>
+    <div class="cs-decisions">
+      <div class="cs-decision reveal"><h4 data-k="STEP 1">Lock the context</h4><p>Pin the question to the operator's <b>node and release series</b> before anything is retrieved, so \PROD knowledge never answers a \DR question.</p></div>
+      <div class="cs-decision reveal"><h4 data-k="STEP 2">Hybrid retrieval</h4><p>Search the manuals with vector + keyword search merged by <b>Reciprocal Rank Fusion</b>, plus vector search over signed expert notes for that node only.</p></div>
+      <div class="cs-decision reveal"><h4 data-k="STEP 3">Rerank</h4><p>A <b>cross-encoder reranker</b> keeps the top 5 sources.</p></div>
+      <div class="cs-decision reveal"><h4 data-k="STEP 4">One cited generation</h4><p><b>One local LLM call</b> that must cite its sources as [n].</p></div>
+      <div class="cs-decision reveal"><h4 data-k="STEP 5">Close the loop</h4><p>Map citations back to sources, suggest who to call from the graph, and log the question to the learner's map.</p></div>
+    </div>
+
+    <div class="cs-prose reveal" style="margin-top:28px;">
+      <p><b>Early warning is plain code, not AI</b>, so it's explainable and testable: expert pattern rules, "comes before" chains in the graph, and metric-trend projection.</p>
+    </div>
+    <blockquote class="cs-pull reveal">Every claim cited. Context never leaks. Nothing runs without a senior's approval. <span class="accent">Fully on-prem.</span></blockquote>
+  </section>
+
+  <!-- 04 TECH STACK -->
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">04</span><span class="cs-sec-title">Tech stack</span></div>
+    <div class="cs-table-wrap reveal">
+      <table class="cs-table">
+        <tbody>
+          <tr><td>Frontend</td><td>Next.js 15 · React 19 · TypeScript · Tailwind CSS · vis-network</td></tr>
+          <tr><td>Backend</td><td>Python · FastAPI · uvicorn</td></tr>
+          <tr><td>Data</td><td>PostgreSQL 16 + pgvector (graph and vectors in one database)</td></tr>
+          <tr><td>AI (local)</td><td>Ollama on a 6 GB RTX 4050 · Qwen 3.5 4B · embeddinggemma · MiniLM cross-encoder</td></tr>
+          <tr><td>Infra / testing</td><td>Docker Compose · pytest (191 unit tests) · Puppeteer</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 05 RESULTS -->
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">05</span><span class="cs-sec-title">Results</span></div>
+    <div class="cs-prose reveal" style="margin-bottom:18px;">
+      <p>Measured on our own 60-question evaluation set.</p>
+    </div>
+    <div class="cs-perf reveal">
+      <div class="p"><div class="lab">Context leaks</div><div class="val"><span class="to">0</span></div></div>
+      <div class="p"><div class="lab">Unsafe inversions ("do not" → "do")</div><div class="val"><span class="to">0</span></div></div>
+      <div class="p"><div class="lab">Key facts present</div><div class="val"><span class="to">89-93%</span></div></div>
+      <div class="p"><div class="lab">Correct behaviour (answer / clarify / refer)</div><div class="val"><span class="to">80%</span></div></div>
+      <div class="p"><div class="lab">Correct manual / expert cited</div><div class="val"><span class="to">100% / 100%</span></div></div>
+      <div class="p"><div class="lab">Per answer, fully local</div><div class="val"><span class="to">~5-10 s</span></div></div>
+    </div>
+    <div class="cs-prose reveal" style="margin-top:22px;">
+      <p>Several sponsors each posted a problem, with up to six teams per problem. We placed <b>2nd overall</b>, by a narrow margin. During judging, a judge tried to break the assistant with a <b>live prompt-injection attempt</b>, and it held.</p>
+    </div>
+  </section>
+
+  <!-- 06 LIMITATIONS -->
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">06</span><span class="cs-sec-title">Honest limitations</span></div>
+    <div class="cs-prose reveal">
+      <p><b>Real:</b> the HPE NonStop manuals. <b>Fictional:</b> the senior experts and their notes, written for the demo and tied to real manual sections. <b>Simulated:</b> alarms, metrics and command output. The connectors follow the vendors' documented formats but were tested against stand-ins, not a live customer system.</p>
+    </div>
+  </section>
+
+  <!-- 07 NEXT -->
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">07</span><span class="cs-sec-title">What's next</span></div>
+    <div class="cs-prose reveal">
+      <p>We're developing Synapse into <b>ongoing research</b>: a larger benchmark, comparisons with and without context scoping, a second domain to test generality, and a user study with real operators.</p>
+    </div>
+  </section>
+
+  <!-- prev / next -->
+  <nav class="cs-foot-nav">
+    <a href="apex-analytics.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> <span class="label">Previous</span> Apex Analytics</a>
+    <a href="asl-translator.html"><span class="label">Next case study</span> ASL &amp; Speech Translator <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </nav>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© <span id="yr"></span> Ghouse Mohiuddin Mohammed · Built &amp; hosted on GitHub Pages</div>
+    <div><a href="https://github.com/ghousee" target="_blank" rel="noopener">github.com/ghousee</a></div>
+  </div>
+</footer>
+
+<script src="../assets/site.js?v=4" defer></script>
+</body>
+</html>
