@@ -242,7 +242,7 @@ function injectStyle() {
     .pg-title{font-family:ui-monospace,monospace;font-size:13px;font-weight:600;color:#e8edf4;display:flex;align-items:center;gap:9px;letter-spacing:.02em;}
     .pg-muted{color:#5e6b7d;font-weight:500;}
     .pg-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;}
-    .pg-close{font-family:ui-monospace,monospace;font-size:12px;color:#9aa7b8;background:transparent;border:1px solid #1f2b3d;border-radius:7px;padding:4px 10px;cursor:pointer;transition:all .2s;}
+    .pg-close{font-family:ui-monospace,monospace;font-size:12px;color:#9aa7b8;background:transparent;border:1px solid #1f2b3d;border-radius:7px;padding:4px 10px;cursor:pointer;transition:color .2s ease,border-color .2s ease;}
     .pg-close:hover{color:#4ade80;border-color:#2f9e5c;}
     .pg-canvas{display:block;width:720px;max-width:92vw;height:auto;touch-action:none;}`;
   document.head.appendChild(s);

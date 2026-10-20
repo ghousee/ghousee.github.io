@@ -71,13 +71,16 @@ function injectStyle() {
     .ar-title{font-family:ui-monospace,monospace;font-size:13px;font-weight:600;color:#e8edf4;display:flex;align-items:center;gap:9px;}
     .ar-muted{color:#5e6b7d;font-weight:500;}
     .ar-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;}
-    .ar-close{font-family:ui-monospace,monospace;font-size:12px;color:#9aa7b8;background:transparent;border:1px solid #1f2b3d;border-radius:7px;padding:4px 10px;cursor:pointer;transition:all .2s;}
+    .ar-close{font-family:ui-monospace,monospace;font-size:12px;color:#9aa7b8;background:transparent;border:1px solid #1f2b3d;border-radius:7px;padding:4px 10px;cursor:pointer;transition:color .2s ease,border-color .2s ease;}
     .ar-close:hover{color:#4ade80;border-color:#2f9e5c;}
     .ar-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px;}
     .ar-grid .ar-card:first-child{grid-column:1 / -1;}
     .ar-card{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;cursor:pointer;
       border:1px solid #1f2b3d;border-radius:12px;background:#111824;padding:18px;transition:transform .18s ease,border-color .18s ease;}
-    .ar-card:hover{transform:translateY(-3px);border-color:#4ade80;}
+    @media (hover:hover) and (pointer:fine){.ar-card:hover{transform:translateY(-3px);border-color:#4ade80;}}
+    .ar-card:active{transform:scale(0.98);}
+    .ar-panel{animation:arPop .22s cubic-bezier(0.23,1,0.32,1);}
+    @keyframes arPop{from{opacity:0;transform:scale(0.96)}to{opacity:1;transform:none}}
     .ar-tag{font-family:ui-monospace,monospace;font-size:10px;color:#04130a;background:#4ade80;border-radius:5px;padding:2px 7px;font-weight:700;letter-spacing:.04em;}
     .ar-name{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:600;font-size:18px;color:#e8edf4;}
     .ar-desc{font-family:Inter,system-ui,sans-serif;font-size:13px;color:#9aa7b8;line-height:1.5;}

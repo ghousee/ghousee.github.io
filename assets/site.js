@@ -10,7 +10,7 @@
   let summoning = false;
   function summonGame() {
     if (summoning) return; summoning = true;
-    import(ASSET_BASE + 'arcade.js')
+    import(ASSET_BASE + 'arcade.js?v=2')
       .then((m) => { summoning = false; m.openArcade(); })
       .catch(() => { summoning = false; });
   }
@@ -41,8 +41,14 @@
   const revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && revealEls.length) {
     const io = new IntersectionObserver((entries) => {
+      let i = 0;
       entries.forEach((e) => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        if (!e.isIntersecting) return;
+        const el = e.target, delay = Math.min(i++, 5) * 60; // 60ms stagger, capped
+        el.style.transitionDelay = delay + 'ms';
+        el.classList.add('in'); io.unobserve(el);
+        // once revealed, drop the reveal styles so the element's own transitions apply
+        setTimeout(() => { el.classList.remove('reveal', 'in'); el.style.transitionDelay = ''; }, delay + 700);
       });
     }, { threshold: 0.12 });
     revealEls.forEach((el) => io.observe(el));

@@ -256,7 +256,7 @@ function injectStyle() {
     .g3-title{font-family:ui-monospace,monospace;font-size:13px;font-weight:600;color:#e8edf4;display:flex;align-items:center;gap:9px;letter-spacing:.02em;}
     .g3-muted{color:#5e6b7d;font-weight:500;}
     .g3-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;}
-    .g3-close{font-family:ui-monospace,monospace;font-size:12px;color:#9aa7b8;background:transparent;border:1px solid #1f2b3d;border-radius:7px;padding:4px 10px;cursor:pointer;transition:all .2s;}
+    .g3-close{font-family:ui-monospace,monospace;font-size:12px;color:#9aa7b8;background:transparent;border:1px solid #1f2b3d;border-radius:7px;padding:4px 10px;cursor:pointer;transition:color .2s ease,border-color .2s ease;}
     .g3-close:hover{color:#4ade80;border-color:#2f9e5c;}
     .g3-stage{position:relative;width:100%;aspect-ratio:16/10;background:#080c12;cursor:crosshair;}
     .g3-canvas{display:block;width:100%;height:100%;touch-action:none;}
