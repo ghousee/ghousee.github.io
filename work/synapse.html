@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../assets/style.css?v=12" />
+<link rel="stylesheet" href="../assets/style.css?v=13" />
 </head>
 <body>
 
@@ -53,6 +53,7 @@
       <div class="cell"><div class="k">Context leaks</div><div class="v">0</div></div>
       <div class="cell"><div class="k">Unit tests</div><div class="v">191</div></div>
     </div>
+    <div class="cs-hero-shot reveal"><a class="cs-shot" href="../assets/img/synapse/overview.webp" target="_blank" rel="noopener"><img src="../assets/img/synapse/overview.webp" alt="Synapse operator console overview: watcher alerts, system health and a named senior warning pattern" width="1400" height="933" decoding="async" /><div class="cap">Operator console: early warnings, system health and who to call, for the node you are on.</div></a></div>
     <p class="cs-note">Code available on request.</p>
   </header>
 
@@ -72,22 +73,27 @@
     <div class="cs-sec-head reveal"><span class="cs-sec-num">02</span><span class="cs-sec-title">What it does</span></div>
     <div class="cs-builds two">
       <div class="cs-build reveal">
+        <a class="cs-shot" href="../assets/img/synapse/assistant.webp" target="_blank" rel="noopener"><img src="../assets/img/synapse/assistant.webp" alt="AI assistant answer citing a veteran note and a manual section" width="1400" height="933" loading="lazy" decoding="async" /></a>
         <h4>AI Assistant</h4>
         <p>Ask in plain English. Every answer cites the manual section <b>and</b> the senior expert ("Veteran") whose knowledge it uses, says when the sources don't cover a question, and is strictly scoped to the node, release and subsystem you're on.</p>
       </div>
       <div class="cs-build reveal">
+        <a class="cs-shot" href="../assets/img/synapse/graph.webp" target="_blank" rel="noopener"><img src="../assets/img/synapse/graph.webp" alt="Synapse knowledge graph with 1,718 entities and 3,559 links" width="1400" height="933" loading="lazy" decoding="async" /></a>
         <h4>A knowledge graph that builds itself</h4>
         <p><b>1,700+ nodes, 3,500+ links.</b> Commands and messages are extracted from the manuals, signed notes auto-link to what they mention, and juniors' questions and passed checks create "learned from" and "knows" links, so you can watch knowledge flow from Veteran to junior.</p>
       </div>
       <div class="cs-build reveal">
+        <a class="cs-shot" href="../assets/img/synapse/knows-link.webp" target="_blank" rel="noopener"><img src="../assets/img/synapse/knows-link.webp" alt="A signed veteran note in the graph with the knows link it earned" width="1400" height="1027" loading="lazy" decoding="async" /></a>
         <h4>Knowledge capture</h4>
         <p>Seniors teach by talking in a "Teach" chat. The AI drafts a structured note (<b>when / do / why / when not</b>), and only the owner can sign it. Unsigned knowledge is never used.</p>
       </div>
       <div class="cs-build reveal">
+        <a class="cs-shot" href="../assets/img/synapse/knowledge-check.webp" target="_blank" rel="noopener"><img src="../assets/img/synapse/knowledge-check.webp" alt="Knowledge check graded against the senior expert note" width="1400" height="1027" loading="lazy" decoding="async" /></a>
         <h4>Training juniors</h4>
         <p>A per-person <b>learning map</b> (seen vs. self-rated vs. demonstrated), knowledge checks graded against the senior's own notes, and a guided training sandbox that records nothing.</p>
       </div>
       <div class="cs-build reveal">
+        <a class="cs-shot" href="../assets/img/synapse/alerts.webp" target="_blank" rel="noopener"><img src="../assets/img/synapse/alerts.webp" alt="High-priority alert from IR Prognosis with fix steps from veteran notes" width="1400" height="875" loading="lazy" decoding="async" /></a>
         <h4>Early warnings</h4>
         <p>A rule-based watcher fires a named senior's warning pattern before a failure (e.g. "about 20 minutes before Pathway stops serving ATMs" after a CPU failure), with High/Medium/Low priority and a plain-English reason. Connectors read alarms from <b>IR Prognosis</b> (REST) and <b>BlackWood MOMI</b> (exports); fix steps come from the graph.</p>
       </div>
@@ -95,6 +101,11 @@
         <h4>Safe commands</h4>
         <p>Proposed from a verified catalog, risk-labelled and dry-run on a simulator. Only a senior can approve; critical commands need a <b>second approver</b>. Simulation only.</p>
       </div>
+    </div>
+    <div class="cs-gallery">
+      <div class="reveal"><a class="cs-shot" href="../assets/img/synapse/graph-full.webp" target="_blank" rel="noopener"><img src="../assets/img/synapse/graph-full.webp" alt="The full Synapse knowledge graph" width="1140" height="1054" loading="lazy" decoding="async" /><div class="cap">The full graph: manuals, commands, events and people.</div></a></div>
+      <div class="reveal"><a class="cs-shot" href="../assets/img/synapse/simulator.webp" target="_blank" rel="noopener"><img src="../assets/img/synapse/simulator.webp" alt="Training simulator guided exercise" width="1400" height="1027" loading="lazy" decoding="async" /><div class="cap">Training sandbox: guided exercises, nothing recorded.</div></a></div>
+      <div class="reveal"><a class="cs-shot" href="../assets/img/synapse/debrief.webp" target="_blank" rel="noopener"><img src="../assets/img/synapse/debrief.webp" alt="Training debrief citing veteran notes and manual sections" width="1400" height="1027" loading="lazy" decoding="async" /><div class="cap">Debrief: every lesson cites its sources.</div></a></div>
     </div>
   </section>
 
@@ -215,9 +226,17 @@
     </div>
   </section>
 
-  <!-- 07 NEXT -->
+  <!-- 07 MY ROLE -->
   <section class="cs-sec">
-    <div class="cs-sec-head reveal"><span class="cs-sec-num">07</span><span class="cs-sec-title">What's next</span></div>
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">07</span><span class="cs-sec-title">My role</span></div>
+    <div class="cs-prose reveal">
+      <p>Synapse was Team #31's entry, and <b>I built the whole system</b>: the architecture, the FastAPI backend, the ingest pipeline and RAG, the knowledge graph, the early-warning watcher and connectors, the safe-command flow, and the Next.js operator console.</p>
+    </div>
+  </section>
+
+  <!-- 08 NEXT -->
+  <section class="cs-sec">
+    <div class="cs-sec-head reveal"><span class="cs-sec-num">08</span><span class="cs-sec-title">What's next</span></div>
     <div class="cs-prose reveal">
       <p>We're developing Synapse into <b>ongoing research</b>: a larger benchmark, comparisons with and without context scoping, a second domain to test generality, and a user study with real operators.</p>
     </div>
