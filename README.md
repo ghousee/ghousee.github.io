@@ -1,22 +1,22 @@
-# Ghouse Mohiuddin Mohammed — Portfolio
+# Ghouse Mohiuddin Mohammed: Portfolio
 
 Personal portfolio site. Live at **https://ghousee.github.io**
 
-Full-stack developer working across data pipelines, cloud, and ML/AI. This site
+Software engineer working across data pipelines, cloud, and ML/AI. This site
 presents a few projects as short case studies, each leading with outcomes and
 numbers, with the technical detail underneath.
 
 ## Case studies
-- **Apex Mobile Media** — a data pipeline platform (400M+ row Redshift warehouse)
+- **Apex Mobile Media**: a data pipeline platform (400M+ row cloud data warehouse)
   and a FastAPI + React analytics app, with a hot/cold two-tier architecture.
 - **Synapse** (Catalyst 2026 hackathon, runner-up): an on-prem AI ops assistant
   for HPE NonStop that cites the manual and the senior expert behind every answer.
-- **Flight Refund RAG** — a local, citation-grounded retrieval-augmented
+- **Flight Refund RAG**: a local, citation-grounded retrieval-augmented
   generation system over airline and government policy.
-- **ASL & Speech Translator** — real-time sign recognition plus speech
+- **ASL & Speech Translator**: real-time sign recognition plus speech
   translation across 100+ languages.
-- **Payroll Management System** — a complete C# / .NET desktop app over MySQL.
-- **System Design** — relational ERD and object-oriented UML work.
+- **Payroll Management System**: a complete C# / .NET desktop app over MySQL.
+- **System Design**: relational ERD and object-oriented UML work.
 
 ## Tech
 - Plain HTML, CSS, and vanilla JavaScript. No build step.
